@@ -1,18 +1,24 @@
 import {useState} from 'react';
 import TrackList from './TrackList.jsx'
 
-export default function PlayList () {
-
-    const playListTracks = [
-        { id: 1, trackName: "Song X", trackArtist: "Artist A" },
-        { id: 2, trackName: "Song Y", trackArtist: "Artist B" },
-    ]
+export default function PlayList ({playListTracks, removeTrack, playListName, setPlayListName}) {
     
-//change Playlist name to an input field
+    function handleNameChange(e) {
+        setPlayListName(e.target.value)
+    }
+
+
     return(
         <>
-            <h2>Playlist name</h2>
-            <TrackList tracks={playListTracks}/>
+            <input 
+                value={playListName} 
+                onChange={handleNameChange} 
+                placeholder="Enter New Playlist" 
+                type="text" 
+                name="newplaylist" 
+                id="newplaylist" 
+            />
+            <TrackList tracks={playListTracks} showButton={false} listType="playList" removeTrack={removeTrack}/>
             <button type="submit">Save to Spotify</button>
         </>
     )

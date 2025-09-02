@@ -17,6 +17,8 @@ export default function SearchBar() {
             <form onSubmit={handleSubmit}>
                 <h1>Search for your song</h1>
                 <input 
+                    name="search"
+                    id="idInput"
                     placeholder="Search on Spotify"
                     type="text"
                     onChange={handleInput}

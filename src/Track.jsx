@@ -1,10 +1,22 @@
-//import React, { useState } from 'react';
+export default function Track({id, trackName, trackArtist, showButton, addTrack, removeTrack, uri}) {
 
-export default function Track({trackName, trackArtist}) {
+    function handleAdd() {
+        if(addTrack) {  
+            addTrack({id,trackName,trackArtist, uri})
+        }
+    }
+
+    function handleRemove() {
+        if(removeTrack) {
+            removeTrack({id,trackName, trackArtist, uri})
+        }
+    }
+
     return(
         <>
             <p>{trackName}-{trackArtist}</p>
-            <button>Add Track</button>
+            {showButton && <button  onClick={handleAdd}>+</button>}
+            {!showButton && <button onClick={handleRemove}>-</button>}
         </>
     )
 }
