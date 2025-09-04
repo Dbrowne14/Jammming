@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function SearchBar() {
+export default function SearchBar({fetchApi}) {
     const[input, setInput] = useState("");
 
     function handleInput(e) {
@@ -9,7 +9,8 @@ export default function SearchBar() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        alert(`You have searched for ${input}`)
+        fetchApi(input)
+        console.log(fetchApi(input))
     }
 
     return(
