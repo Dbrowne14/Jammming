@@ -10,30 +10,22 @@ function App() {
    const[playListTracks,setPlayListTracks] = useState([]);
 
 
-   useEffect(()=> {
+   useEffect(() => {
       const initAuth = async () => {
-         const code = Spotify.getResponse();
-         const cachedToken = localStorage.getItem("access_token");
-
-         
-         if(cachedToken) {
-            console.log("Using Existing Token");
-            return;
+         const token = await Spotify.getValidAccessToken();
+         if (token) {
+            console.log("Authenticated successfully");
          }
+      };
 
-         if(code) {
-            console.log("Access Token retrieved and saved")
-            return;
-         }
+      initAuth();
+   },[]);
 
-         Spotify.getAuthUrl();
-         console.log(Spotify.getAuthUrl())
-         }; initAuth();
-      }, [])
 
    function addTrack(track) {
       if(!playListTracks.find(t=>t.id === track.id)) {
          setPlayListTracks([...playListTracks, track])
+         console.log(playListTracks)
       }
    }
 
@@ -43,7 +35,15 @@ function App() {
 
    async function handleSearch(searchValue) {   
       const results = await Spotify.searchForResults(searchValue);
-      setSearchResults(results);
+
+      const mappedResults = results.map(track => ({
+        id: track.id,
+        trackName: track.name,
+        trackArtist: track.artists.map(a => a.name).join(", "),
+        uri: track.uri
+      }));
+
+      setSearchResults(mappedResults);
    }
 
    const [playListName, setPlayListName] = useState("")
@@ -57,7 +57,7 @@ function App() {
    <>
       <SearchBar onSearch={handleSearch}/>
       <SearchResults tracks={searchResults} addTrack={addTrack}/>
-      <PlayList playListTracks={playListTracks} removeTrack={removeTrack}/>
+      <PlayList playListTracks={playListTracks} removeTrack={removeTrack} playListName={playListName} setPlayListName={setPlayListName}/>
    </> 
   )
 }

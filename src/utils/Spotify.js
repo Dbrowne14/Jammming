@@ -37,7 +37,7 @@ const Spotify = {
         }
 
         authUrl.search = new URLSearchParams(params).toString();
-        window.location.href = authUrl.toString();
+        return authUrl.toString();
     },
 
     getResponse () {
@@ -46,22 +46,7 @@ const Spotify = {
         return code;
     },
 
-    async getAccessToken(code) {
-        // 1. Always check for cached token first
-        const cachedToken = localStorage.getItem("access_token");
-        if (cachedToken) {
-            console.log("Using cached access token");
-            return cachedToken;
-        }
-
-        // 2. If no code, user hasn't logged in yet
-        if (!code) {
-            console.warn("No code found — redirecting to Spotify login");
-            this.getAuthUrl();
-            return null;
-        }
-
-        // 3. Exchange the authorization code for an access token
+    async exchangeCodeForToken(code) {
         const codeVerifier = localStorage.getItem("code_verifier");
         const url = "https://accounts.spotify.com/api/token";
 
@@ -78,30 +63,54 @@ const Spotify = {
         };
 
         const res = await fetch(url, payload);
+
+        if (!res.ok) {
+        const err = await res.json();
+        console.error("Token exchange failed:", err);
+        throw new Error(err.error || "Token exchange failed");
+    }
+
+
         const response = await res.json();
 
-        // 4. Handle errors cleanly
         if (response.error) {
-            console.error("Failed to fetch token:", response);
-            localStorage.removeItem("access_token");
-            this.getAuthUrl(); // Force re-authentication
+            console.error("Token exchange failed", response);
+            localStorage.clear();
             return null;
         }
 
-        // 5. Cache the token & clean up the URL
-        if (response.access_token) {
-            localStorage.setItem('access_token', response.access_token);
+        // 🔹 NEW: Store expiry time and refresh token**
+        localStorage.setItem("access_token", response.access_token);
+        localStorage.setItem("refresh_token", response.refresh_token);
+        localStorage.setItem("expires_at", Date.now() + response.expires_in * 1000);
 
-            // Store refresh token if returned
-            if (response.refresh_token) {
-                localStorage.setItem('refresh_token', response.refresh_token);
-            }
+        // 🔹 NEW: Remove ?code=... from URL after exchanging**
+        window.history.replaceState({}, document.title, "/");
 
-            return response.access_token;
-        } else {
-            console.error("Failed to fetch token:", response);
-            return null;
+        return response.access_token;
+    },
+
+    async getValidAccessToken() {
+        const token = localStorage.getItem("access_token");
+        const expiresAt = localStorage.getItem("expires_at");
+        const code = this.getResponse();
+
+        // 🔹 NEW: Use cached token if still valid**
+        if (token && expiresAt && Date.now() < parseInt(expiresAt)) {
+            return token;
         }
+
+        if (localStorage.getItem("refresh_token")) {
+            return await this.getRefreshToken();
+        }
+
+        if (code) {
+            return await this.exchangeCodeForToken(code);
+        }
+
+        // 🔹 NEW: Otherwise, redirect to Spotify login**
+        const authUrl = await this.getAuthUrl();
+        window.location.href = authUrl;
     },
 
     async getRefreshToken() {
@@ -120,10 +129,19 @@ const Spotify = {
                 client_id: clientId
             }),
         }
-        const body = await fetch(url, payload);
-        const response = await body.json();
+
+        const res = await fetch(url, payload);
+        if (!res.ok) {
+            const err = await res.json();
+            console.error("Refresh token failed:", err);
+            localStorage.clear();
+            return null;
+        }
+        const response = await res.json();
 
         localStorage.setItem('access_token', response.access_token);
+        localStorage.setItem('expires_at', Date.now() + response.expires_in * 1000); // ⚡ store expiry
+
         
         if (response.refresh_token) {
             localStorage.setItem('refresh_token', response.refresh_token);
@@ -135,21 +153,20 @@ const Spotify = {
     async searchForResults(track) {
         //handle logic
 
-        let token = localStorage.getItem('access_token');
+        const token = await this.getValidAccessToken();
 
         if(!token) {
-            token = await this.getRefreshToken();
-            if(!token) {
-                console.error("Could not refresh token. Please log in again.");
-                return;
-            }
+             console.error("No valid access token. Please log in again.");
+            return;
         }
+        
 
         console.log("Spotify object:", Spotify); // should be defined
         console.log("Track:", track);
 
         const searchBase = 'https://api.spotify.com/v1/search';
         const endPoint = `${searchBase}?q=${encodeURIComponent(track)}&type=track&limit=10`;
+
         try {
             const response = await fetch(endPoint, {
                 headers: {
@@ -160,18 +177,86 @@ const Spotify = {
             const data = await response.json()
             console.log("Response data:", data);
             
-            if (response.ok) {
-                return data.tracks.items 
-            } else {
+            if (!response.ok) {
                 console.log('Server Error', data.error.message)
+                return
             } 
         } catch (error) {
             console.log('Fetch Error', error)
         }
     },
 
-    savePlaylist() {
+    async savePlaylist(playlistName, playlistTracks) {
         //handle logic
+        const searchBase = "https://api.spotify.com/v1/me"
+        const token = await this.getValidAccessToken();
+
+        //get userID
+        let user_id; // stores userID state
+        try {
+            const response = await fetch(searchBase, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const userData = await response.json()
+
+            if (!response.ok) {
+                console.log('Server Error', userData.error.message)
+                return          
+            }
+            
+            user_id = userData.id;
+
+        } catch (error) {
+            console.log('Fetch Error', error)
+        }
+        
+        // get playlist
+        const userEndPoint = `https://api.spotify.com/v1/users/${user_id}/playlists`
+        let playlist_id; // stores playlist ID state 
+        try {
+            const response = await fetch(userEndPoint, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    "name": `${playlistName}`,
+                    "description": "Playlist created with React",
+                    "public": false
+                })
+            });
+
+            const playListData = await response.json()
+
+            if (!response.ok) {
+                console.log('Server Error', playListData.error.message)
+                return
+            }
+
+            playlist_id = playListData.id;
+
+        } catch(error) {
+            console.log('Fetch Error', error)
+        }
+
+        //add songs
+        const playlistEndpoint = `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`
+        try {
+            const response = await fetch(playlistEndpoint, {
+                method: 'POST', 
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    "uris": playlistTracks.map(track => track.uri)
+                }) 
+            })
+        } catch(error) {
+            console.log('Fetch Error', error)
+        }
     }
 
 }

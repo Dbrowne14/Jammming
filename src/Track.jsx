@@ -3,6 +3,7 @@ export default function Track({id, trackName, trackArtist, showButton, addTrack,
     function handleAdd() {
         if(addTrack) {  
             addTrack({id,trackName,trackArtist, uri})
+            console.log("Iam being clicked")
         }
     }
 
@@ -14,7 +15,8 @@ export default function Track({id, trackName, trackArtist, showButton, addTrack,
 
     return(
         <>
-            <p>{trackName}-{trackArtist}</p>
+            <h3>{trackName}</h3>
+            <p>{trackArtist}</p>
             {showButton && <button  onClick={handleAdd}>+</button>}
             {!showButton && <button onClick={handleRemove}>-</button>}
         </>
