@@ -1,6 +1,6 @@
 import TrackList from './TrackList.jsx'
 
-export default function SearchResults({tracks, addTrack, removeTrack}) {
+export default function SearchResults({tracks, addTrack}) {
     
     return(
         <>

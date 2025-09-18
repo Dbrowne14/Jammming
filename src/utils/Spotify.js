@@ -180,7 +180,10 @@ const Spotify = {
             if (!response.ok) {
                 console.log('Server Error', data.error.message)
                 return
-            } 
+            }
+
+            return data.tracks?.items;
+
         } catch (error) {
             console.log('Fetch Error', error)
         }
@@ -216,11 +219,13 @@ const Spotify = {
         // get playlist
         const userEndPoint = `https://api.spotify.com/v1/users/${user_id}/playlists`
         let playlist_id; // stores playlist ID state 
+        console.log(playlist_id)
         try {
             const response = await fetch(userEndPoint, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     "name": `${playlistName}`,
@@ -244,16 +249,31 @@ const Spotify = {
 
         //add songs
         const playlistEndpoint = `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`
+
+        //check for tracks
+        if (!playlistTracks || playlistTracks.length === 0) {
+            console.warn("No tracks to add, skipping track upload.");
+            return;
+        }
+
         try {
             const response = await fetch(playlistEndpoint, {
                 method: 'POST', 
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     "uris": playlistTracks.map(track => track.uri)
                 }) 
             })
+
+            const newTrackData = await response.json()
+
+            if (!response.ok) {
+                console.log(newTrackData.error.message)
+                return
+            }
         } catch(error) {
             console.log('Fetch Error', error)
         }

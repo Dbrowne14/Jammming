@@ -1,11 +1,21 @@
 import {useState} from 'react';
 import TrackList from './TrackList.jsx'
 
-export default function PlayList ({playListTracks, removeTrack, playListName, setPlayListName}) {
+export default function PlayList ({savePlaylist, playListTracks, setPlayListTracks, removeTrack}) {
     
+   //handle playlist name
+   const [playListName, setPlayListName] = useState("")
+
     function handleNameChange(e) {
-        setPlayListName(e.target.value)
+        setPlayListName(e.target.value);
     }
+
+    function handleSubmit() {
+            savePlaylist(playListName, playListTracks);
+            setPlayListName("");
+            setPlayListTracks([]);
+            console.log(playListName)
+    } 
 
     
     return(
@@ -19,7 +29,7 @@ export default function PlayList ({playListTracks, removeTrack, playListName, se
                 id="newplaylist" 
             />
             <TrackList tracks={playListTracks} showButton={false} listType="playList" removeTrack={removeTrack}/>
-            <button type="submit">Save to Spotify</button>
+            <button type="button" onClick={handleSubmit}>Save to Spotify</button>
         </>
     )
 

@@ -16,7 +16,7 @@ export default function SearchBar({onSearch}) {
     return(
         <>  
             <form onSubmit={handleSubmit}>
-                <h1>Search for your song</h1>
+                <h2>Search for your song</h2>
                 <input 
                     name="search"
                     id="idInput"

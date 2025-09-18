@@ -6,10 +6,8 @@ import Spotify from './utils/Spotify.js'
 import './App.css'
 
 function App() {
-   const[searchResults, setSearchResults] = useState([]);
-   const[playListTracks,setPlayListTracks] = useState([]);
 
-
+   //get token on render
    useEffect(() => {
       const initAuth = async () => {
          const token = await Spotify.getValidAccessToken();
@@ -21,7 +19,8 @@ function App() {
       initAuth();
    },[]);
 
-
+   //add tracks to playlist
+   const[playListTracks,setPlayListTracks] = useState([]);
    function addTrack(track) {
       if(!playListTracks.find(t=>t.id === track.id)) {
          setPlayListTracks([...playListTracks, track])
@@ -30,12 +29,14 @@ function App() {
    }
 
    function removeTrack(track) {
-      setPlayListTracks(playListTracks.filter( t => t.id !== track.id))
+      setPlayListTracks(playListTracks.filter(t => t.id !== track.id))
    }
 
+   //handle search functions
+   const[searchResults, setSearchResults] = useState([]);
    async function handleSearch(searchValue) {   
       const results = await Spotify.searchForResults(searchValue);
-
+      console.log(results)
       const mappedResults = results.map(track => ({
         id: track.id,
         trackName: track.name,
@@ -45,20 +46,23 @@ function App() {
 
       setSearchResults(mappedResults);
    }
+   
 
-   const [playListName, setPlayListName] = useState("")
-
-   function savePlaylist () {
-      const saveURIs = playListTracks.map(track => track.uri);
-   }
-   window.savePlaylist = savePlaylist
 
    return(
-   <>
+   <div>
+      <div class="title">
+         <h1>DaveJams</h1>
+      </div>
       <SearchBar onSearch={handleSearch}/>
       <SearchResults tracks={searchResults} addTrack={addTrack}/>
-      <PlayList playListTracks={playListTracks} removeTrack={removeTrack} playListName={playListName} setPlayListName={setPlayListName}/>
-   </> 
+      <PlayList 
+         playListTracks={playListTracks} 
+         setPlayListTracks={setPlayListTracks} 
+         removeTrack={removeTrack} 
+         savePlaylist={Spotify.savePlaylist.bind(Spotify)}
+      />
+   </div> 
   )
 }
 
