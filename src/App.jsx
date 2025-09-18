@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import SearchBar from './SearchBar.jsx'
-import SearchResults from './SearchResults.jsx'
-import PlayList from './PlayList.jsx'
+import SearchBar from './components/SearchBar.jsx'
+import SearchResults from './components/SearchResults.jsx'
+import PlayList from './components/PlayList.jsx'
 import Spotify from './utils/Spotify.js'
-import './App.css'
+import styles from './styles/App.css'
 
 function App() {
 
@@ -15,7 +15,6 @@ function App() {
             console.log("Authenticated successfully");
          }
       };
-
       initAuth();
    },[]);
 
