@@ -3,7 +3,7 @@ import SearchBar from './components/SearchBar.jsx'
 import SearchResults from './components/SearchResults.jsx'
 import PlayList from './components/PlayList.jsx'
 import Spotify from './utils/Spotify.js'
-import styles from './styles/App.css'
+import styles from './styles/App.module.css'
 
 function App() {
 
@@ -49,18 +49,27 @@ function App() {
 
 
    return(
-   <div>
-      <div class="title">
+   <div className={styles.app}>
+      <div className={styles.header}>
          <h1>DaveJams</h1>
       </div>
-      <SearchBar onSearch={handleSearch}/>
-      <SearchResults tracks={searchResults} addTrack={addTrack}/>
-      <PlayList 
-         playListTracks={playListTracks} 
-         setPlayListTracks={setPlayListTracks} 
-         removeTrack={removeTrack} 
-         savePlaylist={Spotify.savePlaylist.bind(Spotify)}
-      />
+      <div className={styles.heroBanner}>
+         <SearchBar onSearch={handleSearch}/>
+         <div className={styles.separator} />
+         <div className={styles.splitPanel}>
+            <div className={styles.leftPanel}>
+               <SearchResults tracks={searchResults} addTrack={addTrack}/>
+            </div>
+            <div className={styles.rightPanel}>
+            <PlayList 
+               playListTracks={playListTracks} 
+               setPlayListTracks={setPlayListTracks} 
+               removeTrack={removeTrack} 
+               savePlaylist={Spotify.savePlaylist.bind(Spotify)}    
+            />
+            </div>
+         </div>
+      </div> 
    </div> 
   )
 }

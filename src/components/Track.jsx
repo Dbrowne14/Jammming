@@ -1,3 +1,5 @@
+import styles from '../styles/SearchResults.module.css'
+
 export default function Track({id, trackName, trackArtist, showButton, addTrack, removeTrack, uri}) {
 
     function handleAdd() {
@@ -14,11 +16,15 @@ export default function Track({id, trackName, trackArtist, showButton, addTrack,
     }
 
     return(
-        <>
-            <h3>{trackName}</h3>
-            <p>{trackArtist}</p>
-            {showButton && <button  onClick={handleAdd}>+</button>}
-            {!showButton && <button onClick={handleRemove}>-</button>}
-        </>
+        <div className={styles.allResults}>
+            <div className={styles.individualResults}>
+                <div className={styles.trackDisplay}>
+                    <h3 className={styles.text}>{trackName}</h3>
+                    <p className={styles.text}>{trackArtist}</p>
+                </div>
+                {showButton && <button  onClick={handleAdd} className={styles.button}>+</button>}
+                {!showButton && <button onClick={handleRemove} className={styles.button}>-</button>}
+            </div>
+        </div>
     )
 }

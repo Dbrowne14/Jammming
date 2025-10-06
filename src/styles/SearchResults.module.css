@@ -1,0 +1,38 @@
+.header {
+    font-size: 1.8rem;
+    font-family: 'Audiowide', cursive;
+    margin: 1rem;
+    color: rgb(144, 90, 144);
+}
+
+/*.allResults {
+    width: 50%;
+    justify-content: flex-start;
+    text-align: left;
+}*/
+
+.individualResults {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: center;
+    justify-content: end;
+}
+
+.button {
+    height: 2rem;
+    width: 2rem;
+    text-align: center;
+    vertical-align: middle;
+    padding:0;
+    
+}
+
+.trackDisplay {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.text {
+    margin: 0.2rem;
+}

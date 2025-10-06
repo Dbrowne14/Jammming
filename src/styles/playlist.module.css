@@ -1,0 +1,15 @@
+.main {
+    display: inline-flex;
+    column-gap: 2rem;
+    align-items: center;
+    margin: 1rem;
+}
+
+.input {
+    border: 2px solid #ece0fa;  /* light pastel purple border */
+    border-radius: 10px;
+    outline: none;
+    background: #f9f8f9;         /* soft lavender background */
+    transition: all 0.25s ease;
+    color: #4a306d; 
+}
