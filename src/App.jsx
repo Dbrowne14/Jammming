@@ -31,6 +31,16 @@ function App() {
       setPlayListTracks(playListTracks.filter(t => t.id !== track.id))
    }
 
+   function minutesToSeconds(ms) {
+      const totalSeconds = Math.floor(ms / 1000);
+      const minutes = Math.floor(totalSeconds /60);
+      const seconds = totalSeconds % 60;
+
+      const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds
+      
+      return `${minutes}:${formattedSeconds}`
+   }
+
    //handle search functions
    const[searchResults, setSearchResults] = useState([]);
    async function handleSearch(searchValue) {   
@@ -40,7 +50,8 @@ function App() {
         id: track.id,
         trackName: track.name,
         trackArtist: track.artists.map(a => a.name).join(", "),
-        uri: track.uri
+        uri: track.uri,
+        length: minutesToSeconds(track.duration_ms)
       }));
 
       setSearchResults(mappedResults);
@@ -55,7 +66,6 @@ function App() {
       </div>
       <div className={styles.heroBanner}>
          <SearchBar onSearch={handleSearch}/>
-         <div className={styles.separator} />
          <div className={styles.splitPanel}>
             <div className={styles.leftPanel}>
                <SearchResults tracks={searchResults} addTrack={addTrack}/>

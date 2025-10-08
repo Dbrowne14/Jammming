@@ -8,20 +8,19 @@
 
 .splitPanel {
     margin-top: 2rem;
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
 }
 
-.separator {
-  border-bottom: 4px solid rgba(144, 90, 144, 0.5);
-  margin: 50px 0px 30px 0;
-  width: 100%
-}
-
-.leftPanel {
+.leftPanel, .rightPanel {
+    background-color: rgba(13, 3, 13, 0.3);
+    width: 30rem;
+    height: 50rem;
+    padding: 1rem;
+    font-size: 0.8rem;
     text-align: left;
 }
 
-.rightPanel {
-    text-align: left;
-}

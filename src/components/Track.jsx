@@ -1,17 +1,17 @@
 import styles from '../styles/SearchResults.module.css'
 
-export default function Track({id, trackName, trackArtist, showButton, addTrack, removeTrack, uri}) {
+export default function Track({id, trackName, trackArtist, length, showButton, addTrack, removeTrack, uri}) {
 
     function handleAdd() {
         if(addTrack) {  
-            addTrack({id,trackName,trackArtist, uri})
-            console.log("Iam being clicked")
+            addTrack({id,trackName,trackArtist, uri, length})
+            console.log("I am being clicked")
         }
     }
 
     function handleRemove() {
         if(removeTrack) {
-            removeTrack({id,trackName, trackArtist, uri})
+            removeTrack({id,trackName, trackArtist, uri, length})
         }
     }
 
@@ -22,8 +22,13 @@ export default function Track({id, trackName, trackArtist, showButton, addTrack,
                     <h3 className={styles.text}>{trackName}</h3>
                     <p className={styles.text}>{trackArtist}</p>
                 </div>
-                {showButton && <button  onClick={handleAdd} className={styles.button}>+</button>}
-                {!showButton && <button onClick={handleRemove} className={styles.button}>-</button>}
+                 <div className={styles.lengthBox}>
+                    <p className={styles.trackLength}>{length}</p>
+                </div>
+                <div className={styles.buttons}>
+                    {showButton && <button  onClick={handleAdd} className={styles.button}>+</button>}
+                    {!showButton && <button onClick={handleRemove} className={styles.button}>-</button>}
+                </div>
             </div>
         </div>
     )
