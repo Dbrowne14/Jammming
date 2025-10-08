@@ -1,7 +1,7 @@
 import { generateCodeChallenge, generateRandomString } from "./Pkce";
 
 const clientId = "2530f775178c451fa0a3f602fde9c0ed";
-const redirectUri = "http://127.0.0.1:5173/"
+const redirectUri = "https://davejams.netlify.app/"
 const scope = "playlist-modify-private  playlist-modify-public";
 
 
