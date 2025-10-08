@@ -15,7 +15,7 @@ export default function PlayList ({savePlaylist, playListTracks, setPlayListTrac
 
     function handleSubmit() {
             /*if no tracks or entry*/
-            if(!playListTracks || playListTracks.length === 0) {
+            if(!playListTracks || playListTracks.length !== 10) {
                 setEmptyPopUp(true);
                 setTimeout(()=> setEmptyPopUp(false),1000);
                 return;
@@ -47,7 +47,7 @@ export default function PlayList ({savePlaylist, playListTracks, setPlayListTrac
                 {emptyPopUp && (
                     <div className={styles.overlay}> 
                         <div className={styles.popUp}>
-                            <p>You must add tracks</p>
+                            <p>You must have exactly 10 tracks</p>
                         </div>
                     </div>
                 )}

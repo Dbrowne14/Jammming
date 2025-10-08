@@ -23,11 +23,10 @@
 
 .popUp {
     background: #f3e8ff; /* light pastel purple */
-    padding: 0.1rem 0.2rem;
+    font-weight: bold;
+    padding: 0.1rem 0.1rem;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(217, 70, 239, 0.2);
-    font-family: 'Arial', sans-serif;
     color: #291a3d;
     animation: fade 0.5s ease;
-    font-family:'Audiowide', cursive;;
 }

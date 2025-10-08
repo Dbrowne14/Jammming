@@ -62,8 +62,8 @@ function App() {
    return(
    <div className={styles.app}>
       <div className={styles.header}>
-         <h1>IØ Songs</h1>
-         <h3>Create the perfect ten song playlist</h3>
+         <h1>|Ø Songs</h1>
+         <h3 className={styles.subHeader}>Create the perfect <span className={styles.focus}>ten</span> song, <br /> <span className={styles.focus}>thirty five</span> minute playlist</h3>
       </div>
       <div className={styles.heroBanner}>
          <SearchBar onSearch={handleSearch}/>
