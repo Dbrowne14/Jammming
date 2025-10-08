@@ -62,7 +62,8 @@ function App() {
    return(
    <div className={styles.app}>
       <div className={styles.header}>
-         <h1>DaveJams</h1>
+         <h1>IØ Songs</h1>
+         <h3>Create the perfect ten song playlist</h3>
       </div>
       <div className={styles.heroBanner}>
          <SearchBar onSearch={handleSearch}/>
