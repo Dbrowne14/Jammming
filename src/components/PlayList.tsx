@@ -1,19 +1,25 @@
-import { useState } from "react";
-import TrackList from "./TrackList.js";
+import { useState, type ChangeEvent } from "react";
+import TrackList, { type TrackListProps } from "./TrackList.js";
 import styles from "../styles/playlist.module.css";
+
+type PlayListProps = Pick<TrackListProps, "removeTrack"> & {
+  savePlaylist: (playListName: string, playListTracks: TrackListProps["tracks"]) => void
+  playListTracks: TrackListProps["tracks"];
+  setPlayListTracks: (playListTracks: TrackListProps["tracks"]) => void;
+};
 
 export default function PlayList({
   savePlaylist,
   playListTracks,
   setPlayListTracks,
   removeTrack,
-}) {
+}: PlayListProps) {
   //handle playlist name
   const [playListName, setPlayListName] = useState("");
   const [popUp, setPopUp] = useState(false);
   const [emptyPopUp, setEmptyPopUp] = useState(false);
 
-  function handleNameChange(e) {
+  function handleNameChange(e: ChangeEvent<HTMLInputElement>) {
     setPlayListName(e.target.value);
   }
 

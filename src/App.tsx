@@ -1,88 +1,90 @@
-import { useState, useEffect } from 'react'
-import SearchBar from './components/SearchBar.js'
-import SearchResults from './components/SearchResults.js'
-import PlayList from './components/PlayList.js'
-import Spotify from './utils/Spotify.js'
-import styles from './styles/App.module.css'
+import { useState, useEffect } from "react";
+import SearchBar from "./components/SearchBar.js";
+import SearchResults from "./components/SearchResults.js";
+import PlayList from "./components/PlayList.js";
+//@ts-ignore
+import Spotify from "./utils/Spotify.js";
+import styles from "./styles/App.module.css";
 
 function App() {
-
-   //get token on render
-   useEffect(() => {
-      const initAuth = async () => {
-         const token = await Spotify.getValidAccessToken();
-         if (token) {
-            console.log("Authenticated successfully");
-         }
-      };
-      initAuth();
-   },[]);
-
-   //add tracks to playlist
-   const[playListTracks,setPlayListTracks] = useState([]);
-   function addTrack(track) {
-      if(!playListTracks.find(t=>t.id === track.id)) {
-         setPlayListTracks([...playListTracks, track])
-         console.log(playListTracks)
+  //get token on render
+  useEffect(() => {
+    const initAuth = async () => {
+      const token = await Spotify.getValidAccessToken();
+      if (token) {
+        console.log("Authenticated successfully");
       }
-   }
+    };
+    initAuth();
+  }, []);
 
-   function removeTrack(track) {
-      setPlayListTracks(playListTracks.filter(t => t.id !== track.id))
-   }
+  //add tracks to playlist
+  const [playListTracks, setPlayListTracks] = useState([]);
+  function addTrack(track) {
+    if (!playListTracks.find((t) => t.id === track.id)) {
+      setPlayListTracks([...playListTracks, track]);
+      console.log(playListTracks);
+    }
+  }
 
-   function minutesToSeconds(ms) {
-      const totalSeconds = Math.floor(ms / 1000);
-      const minutes = Math.floor(totalSeconds /60);
-      const seconds = totalSeconds % 60;
+  function removeTrack(track) {
+    setPlayListTracks(playListTracks.filter((t) => t.id !== track.id));
+  }
 
-      const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds
-      
-      return `${minutes}:${formattedSeconds}`
-   }
+  function minutesToSeconds(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
 
-   //handle search functions
-   const[searchResults, setSearchResults] = useState([]);
-   async function handleSearch(searchValue) {   
-      const results = await Spotify.searchForResults(searchValue);
-      console.log(results)
-      const mappedResults = results.map(track => ({
-        id: track.id,
-        trackName: track.name,
-        trackArtist: track.artists.map(a => a.name).join(", "),
-        uri: track.uri,
-        length: minutesToSeconds(track.duration_ms)
-      }));
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
-      setSearchResults(mappedResults);
-   }
-   
+    return `${minutes}:${formattedSeconds}`;
+  }
 
+  //handle search functions
+  const [searchResults, setSearchResults] = useState([]);
+  async function handleSearch(searchValue) {
+    const results = await Spotify.searchForResults(searchValue);
+    console.log(results);
+    const mappedResults = results.map((track) => ({
+      id: track.id,
+      trackName: track.name,
+      trackArtist: track.artists.map((a) => a.name).join(", "),
+      uri: track.uri,
+      length: minutesToSeconds(track.duration_ms),
+    }));
 
-   return(
-   <div className={styles.app}>
+    setSearchResults(mappedResults);
+  }
+
+  return (
+    <div className={styles.app}>
       <div className={styles.header}>
-         <h1>|Ø Songs</h1>
-         <h3 className={styles.subHeader}>Create the perfect <span className={styles.focus}>ten</span> song, <br /> <span className={styles.focus}>thirty five</span> minute playlist</h3>
+        <h1>|Ø Songs</h1>
+        <h3 className={styles.subHeader}>
+          Create the perfect <span className={styles.focus}>ten</span> song,{" "}
+          <br /> <span className={styles.focus}>thirty five</span> minute
+          playlist
+        </h3>
       </div>
       <div className={styles.heroBanner}>
-         <SearchBar onSearch={handleSearch}/>
-         <div className={styles.splitPanel}>
-            <div className={styles.leftPanel}>
-               <SearchResults tracks={searchResults} addTrack={addTrack}/>
-            </div>
-            <div className={styles.rightPanel}>
-            <PlayList 
-               playListTracks={playListTracks} 
-               setPlayListTracks={setPlayListTracks} 
-               removeTrack={removeTrack} 
-               savePlaylist={Spotify.savePlaylist.bind(Spotify)}    
+        <SearchBar onSearch={handleSearch} />
+        <div className={styles.splitPanel}>
+          <div className={styles.leftPanel}>
+            <SearchResults tracks={searchResults} addTrack={addTrack} />
+          </div>
+          <div className={styles.rightPanel}>
+            <PlayList
+              playListTracks={playListTracks}
+              setPlayListTracks={setPlayListTracks}
+              removeTrack={removeTrack}
+              savePlaylist={Spotify.savePlaylist.bind(Spotify)}
             />
-            </div>
-         </div>
-      </div> 
-   </div> 
-  )
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;

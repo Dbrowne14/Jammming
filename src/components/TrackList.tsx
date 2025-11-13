@@ -1,4 +1,10 @@
 import Track from "./Track.js";
+import { type Trackprops } from "./Track.js";
+
+export type TrackListProps = Pick<Trackprops, "showButton" | "addTrack" | "removeTrack"> & {
+    tracks: Pick<Trackprops, "uri" | "length" | "trackArtist" | "trackName" | "id" >[]
+    listType: string
+}
 
 export default function TrackList({
   tracks = [],
@@ -6,7 +12,7 @@ export default function TrackList({
   addTrack,
   removeTrack,
   listType,
-}) {
+}:TrackListProps) {
   return (
     <div>
       {tracks.map((track) => (

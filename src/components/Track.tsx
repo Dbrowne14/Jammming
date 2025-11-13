@@ -1,6 +1,21 @@
 import styles from '../styles/SearchResults.module.css'
 
-export default function Track({id, trackName, trackArtist, length, showButton, addTrack, removeTrack, uri}) {
+export interface Trackprops extends AddRemoveProps {
+    showButton: boolean
+    addTrack?: (param:AddRemoveProps) => void
+    removeTrack?: (param:AddRemoveProps) => void
+}
+
+export interface AddRemoveProps {
+    id: string
+    trackName: string 
+    trackArtist: string
+    length: number
+    uri: string  
+}
+
+
+export default function Track({id, trackName, trackArtist, length, showButton, addTrack, removeTrack, uri}: Trackprops) {
 
     function handleAdd() {
         if(addTrack) {  
@@ -33,3 +48,4 @@ export default function Track({id, trackName, trackArtist, length, showButton, a
         </div>
     )
 }
+

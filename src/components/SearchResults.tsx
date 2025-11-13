@@ -1,7 +1,8 @@
-import TrackList from "./TrackList.js";
+import TrackList, {type TrackListProps} from "./TrackList.js";
 import styles from "../styles/SearchResults.module.css";
 
-export default function SearchResults({ tracks, addTrack }) {
+
+export default function SearchResults({ tracks, addTrack }: Pick <TrackListProps, "tracks" | "addTrack">) {
   return (
     <>
       <h2 className={styles.header}>Search Results</h2>
