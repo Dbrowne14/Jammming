@@ -1,8 +1,8 @@
 import Track from "./Track.js";
-import { type Trackprops } from "./Track.js";
+import type {  Track as Tracks,  Trackprops } from "./Track.js";
 
 export type TrackListProps = Pick<Trackprops, "showButton" | "addTrack" | "removeTrack"> & {
-    tracks: Pick<Trackprops, "uri" | "length" | "trackArtist" | "trackName" | "id" >[]
+    tracks: Tracks[]
     listType: string
 }
 

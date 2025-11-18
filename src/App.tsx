@@ -5,6 +5,13 @@ import PlayList from "./components/PlayList.js";
 //@ts-ignore
 import Spotify from "./utils/Spotify.js";
 import styles from "./styles/App.module.css";
+import { type Track } from "./components/Track.js";
+
+// to do -
+//track [x]
+//playlisttracks [x]
+//handlesearch[x]
+//searchValue [x]
 
 function App() {
   //get token on render
@@ -19,19 +26,19 @@ function App() {
   }, []);
 
   //add tracks to playlist
-  const [playListTracks, setPlayListTracks] = useState([]);
-  function addTrack(track) {
+  const [playListTracks, setPlayListTracks] = useState<Track[]>([]);
+  function addTrack(track: Track) {
     if (!playListTracks.find((t) => t.id === track.id)) {
       setPlayListTracks([...playListTracks, track]);
       console.log(playListTracks);
     }
   }
 
-  function removeTrack(track) {
+  function removeTrack(track: Track) {
     setPlayListTracks(playListTracks.filter((t) => t.id !== track.id));
   }
 
-  function minutesToSeconds(ms) {
+  function minutesToSeconds(ms: number) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
@@ -41,17 +48,25 @@ function App() {
     return `${minutes}:${formattedSeconds}`;
   }
 
+  type SpotifyTrack = {
+    id: string
+    name: string
+    artists: {name: string }[]
+    duration_ms: number
+    uri: string
+  }
+
   //handle search functions
-  const [searchResults, setSearchResults] = useState([]);
-  async function handleSearch(searchValue) {
-    const results = await Spotify.searchForResults(searchValue);
+  const [searchResults, setSearchResults] = useState<Track[]>([]);
+  async function handleSearch(searchValue: string) {
+    const results: SpotifyTrack[] = await Spotify.searchForResults(searchValue);
     console.log(results);
-    const mappedResults = results.map((track) => ({
+    const mappedResults: Track[] = results.map((track) => ({
       id: track.id,
       trackName: track.name,
       trackArtist: track.artists.map((a) => a.name).join(", "),
-      uri: track.uri,
       length: minutesToSeconds(track.duration_ms),
+      uri: track.uri
     }));
 
     setSearchResults(mappedResults);

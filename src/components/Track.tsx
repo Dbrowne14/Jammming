@@ -1,16 +1,16 @@
 import styles from '../styles/SearchResults.module.css'
 
-export interface Trackprops extends AddRemoveProps {
+export interface Trackprops extends Track {
     showButton: boolean
-    addTrack?: (param:AddRemoveProps) => void
-    removeTrack?: (param:AddRemoveProps) => void
+    addTrack?: (param: Track) => void
+    removeTrack?: (param:Track) => void
 }
 
-export interface AddRemoveProps {
+export interface Track {
     id: string
     trackName: string 
     trackArtist: string
-    length: number
+    length: string
     uri: string  
 }
 

@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import styles from '../styles/SearchBar.module.css'
 
-export default function SearchBar({onSearch}) {
+type SearchBar = {
+    onSearch:(param:string) => void;
+}
+
+export default function SearchBar({onSearch}:SearchBar) {
     const[input, setInput] = useState("");
 
-    function handleInput(e) {
+    function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value);
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         onSearch(input)
         console.log(onSearch(input))
