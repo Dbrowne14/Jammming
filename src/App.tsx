@@ -1,17 +1,11 @@
 import { useState, useEffect } from "react";
-import SearchBar from "./components/SearchBar.js";
-import SearchResults from "./components/SearchResults.js";
-import PlayList from "./components/PlayList.js";
-//@ts-ignore
-import Spotify from "./utils/Spotify.js";
+import SearchBar from "./components/SearchBar.tsx";
+import SearchResults from "./components/SearchResults.tsx";
+import PlayList from "./components/PlayList.tsx";
+import Spotify from "./utils/Spotify.ts";
 import styles from "./styles/App.module.css";
-import { type Track } from "./components/Track.js";
+import { type Track } from "./components/Track.tsx";
 
-// to do -
-//track [x]
-//playlisttracks [x]
-//handlesearch[x]
-//searchValue [x]
 
 function App() {
   //get token on render
