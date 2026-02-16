@@ -24,7 +24,6 @@ function App() {
   function addTrack(track: Track) {
     if (!playListTracks.find((t) => t.id === track.id)) {
       setPlayListTracks([...playListTracks, track]);
-      console.log(playListTracks);
     }
   }
 
