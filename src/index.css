@@ -28,13 +28,17 @@
   }
 
   input {
-    @apply bg-white rounded-2xl border border-blue-950 h-fit w-[20rem];
+    @apply bg-[#f9f8f9] rounded-2xl flex-1 border border-[#ece0fa] h-fit w-full transition-all duration-200 ease-in-out;
+  }
+
+  input::placeholder {
+    @apply text-[#674a88] opacity-[0.8] italic font-[Audiowide];
   }
 }
 
 @layer components {
   .panel {
-    @apply bg-[rgba(13,3,13,0.3)] rounded-xl w-full h-[30rem] text-[0.8rem] text-left;
+    @apply bg-[rgba(13,3,13,0.3)]  rounded-xl w-full h-[30rem] text-[0.8rem] text-left;
   }
 }
 

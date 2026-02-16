@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styles from '../styles/SearchBar.module.css'
 
 type SearchBar = {
     onSearch:(param:string) => void;
@@ -20,8 +19,8 @@ export default function SearchBar({onSearch}:SearchBar) {
 
     return(
         <>  
-            <h2 className={styles.header}>Search for your song</h2>
-            <form onSubmit={handleSubmit} className={styles.form}>
+            <h2 className="font-[Audiowide] text-[rgb(144,90,144)]">Search for your song</h2>
+            <form onSubmit={handleSubmit} className="inline-flex gap-2 items-center mt-0.5 w-fit">
                 <input 
                     name="search"
                     id="idInput"
@@ -29,7 +28,6 @@ export default function SearchBar({onSearch}:SearchBar) {
                     type="text"
                     onChange={handleInput}
                     value={input}
-                    className={styles.input}
                 />
                 <button type="submit" >Search</button> 
              </form>  
