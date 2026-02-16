@@ -8,13 +8,13 @@
   }
 
   body {
-    @apply flex flex-col items-center font-["system-ui"] bg-cover bg-white bg-no-repeat bg-center text-center;
+    @apply flex flex-col items-center font-["system-ui"] bg-cover bg-[rgb(188,149,192)] bg-no-repeat bg-center text-center;
     background-image: url("../assets/BackgroundImage.png");
   }
 
   h1 {
-    @apply text-[3.2rem] leading-[1.1] mt-10;
-  }
+    @apply text-[2.5rem] leading-[1.1] mt-10;
+  } /* make text variable */
 
   button {
     @apply rounded-2xl border border-transparent py-0.5 px-1 text-[0.7rem] text-white bg-black cursor-pointer font-["Audiowide",cursive] transition-colors duration-200;
@@ -31,6 +31,13 @@
     @apply bg-white rounded-2xl border border-blue-950 h-fit w-[20rem];
   }
 }
+
+@layer components {
+  .panel {
+    @apply bg-[rgba(13,3,13,0.3)] rounded-xl w-full h-[30rem] text-[0.8rem] text-left;
+  }
+}
+
 
 :root {
   color-scheme: light dark;

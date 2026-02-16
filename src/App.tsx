@@ -3,7 +3,6 @@ import SearchBar from "./components/SearchBar.tsx";
 import SearchResults from "./components/SearchResults.tsx";
 import PlayList from "./components/PlayList.tsx";
 import Spotify from "./utils/Spotify.ts";
-import styles from "./styles/App.module.css";
 import { type Track } from "./components/Track.tsx";
 
 
@@ -66,22 +65,22 @@ function App() {
   }
 
   return (
-    <div className={styles.app}>
-      <div className={styles.header}>
+    <div>
+      <div className="flex flex-col justify-center items-center text-[rgb(33,8,36)] font-[monospace] mb-2">
         <h1>|Ø Songs</h1>
-        <h3 className={styles.subHeader}>
-          Create the perfect <span className={styles.focus}>ten</span> song,{" "}
-          <br /> <span className={styles.focus}>thirty five</span> minute
+        <h3 className="w-fit p-0.5 text-[rgb(181,138,170)] font-[Audiowide]">
+          Create the perfect <span className="font-bold text-[rgb(91,89,89)]">ten</span> song,{" "}
+          <br /> <span className="font-bold text-[rgb(91,89,89)]">thirty five</span> minute
           playlist
         </h3>
       </div>
-      <div className={styles.heroBanner}>
+      <div className="w-[20rem]">
         <SearchBar onSearch={handleSearch} />
-        <div className={styles.splitPanel}>
-          <div className={styles.leftPanel}>
+        <div className="mt-2 w-full grid grid-cols-[1fr_1fr] justify-items-stretch items-stretch gap-1">
+          <div className="panel">
             <SearchResults tracks={searchResults} addTrack={addTrack} />
           </div>
-          <div className={styles.rightPanel}>
+          <div className="panel">
             <PlayList
               playListTracks={playListTracks}
               setPlayListTracks={setPlayListTracks}
