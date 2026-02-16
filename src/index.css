@@ -38,7 +38,7 @@
 
 @layer components {
   .panel {
-    @apply bg-[rgba(13,3,13,0.3)]  rounded-xl w-full h-[30rem] text-[0.8rem] text-left;
+    @apply bg-[rgba(13,3,13,0.3)] rounded-xl w-full h-full text-[0.8rem] text-left overflow-y-auto;
   }
 }
 

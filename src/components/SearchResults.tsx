@@ -1,11 +1,10 @@
 import TrackList, {type TrackListProps} from "./TrackList.js";
-import styles from "../styles/SearchResults.module.css";
 
 
 export default function SearchResults({ tracks, addTrack }: Pick <TrackListProps, "tracks" | "addTrack">) {
   return (
     <>
-      <h2 className={styles.header}>Search Results</h2>
+      <h2 className="font-[Audiowide] text-[rgb(144,90,144)] text-center">Search Results</h2>
       <TrackList
         tracks={tracks}
         showButton={true}
@@ -16,3 +15,4 @@ export default function SearchResults({ tracks, addTrack }: Pick <TrackListProps
     </>
   );
 }
+//text standardise between h2 and a few others like heading
