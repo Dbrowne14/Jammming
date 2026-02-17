@@ -1,6 +1,5 @@
 import { useState, type ChangeEvent } from "react";
-import type { PlayListProps } from "../types/types";
-
+import type { PlayListProps } from "../../types/types";
 
 const BottomBar = ({
   savePlaylist,
@@ -71,8 +70,12 @@ const BottomBar = ({
           </form>
         </div>
         <div className="inline-flex justify-center items-center w-fit h-full  gap-1 ">
-          <h2 className="font-bold font-[Audiowide] text-[rgb(144,90,144)]">Score:</h2>
-          <h2 className="font-bold font-[Audiowide] text-center rounded-2xl bg-[rgba(238,184,239,0.5)] px-2">99</h2>
+          <h2 className="font-bold font-[Audiowide] text-[rgb(144,90,144)]">
+            Score:
+          </h2>
+          <h2 className="font-bold font-[Audiowide] text-center rounded-2xl bg-[rgba(238,184,239,0.5)] px-2">
+            99
+          </h2>
         </div>
       </div>
     </footer>

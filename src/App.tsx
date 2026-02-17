@@ -4,8 +4,8 @@ import SearchResults from "./components/Main/SearchResults.tsx";
 import PlayList from "./components/Main/PlayList.tsx";
 import Spotify from "./utils/Spotify.ts";
 import { type Track } from "./types/types.ts";
-import BottomBar from "./components/BottomBar.tsx";
-import Header from "./components/Header.tsx";
+import BottomBar from "./components/Footer/BottomBar.tsx";
+import Header from "./components/Header/Header.tsx";
 
 function App() {
   //get token on render
