@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-Poppins: "Poppins" ;
+  --font-Audowide: "Audiowide"
+}
+
 @layer base {
   html,
   body,
@@ -8,7 +13,7 @@
   }
 
   body {
-    @apply flex flex-col items-center font-["system-ui"] bg-cover bg-no-repeat bg-center text-center;
+    @apply flex flex-col items-center font-Poppins bg-cover bg-no-repeat bg-center text-center;
     background-image: url("./assets/BackgroundImage.png");
   }
 
@@ -17,7 +22,7 @@
   } /* make text variable */
 
   button {
-    @apply rounded-2xl border border-transparent py-0.5 px-1 text-[0.7rem] text-white bg-black cursor-pointer font-["Audiowide",cursive] transition-colors duration-200;
+    @apply rounded-2xl border border-transparent py-0.5 px-1 text-[0.7rem] text-white bg-black cursor-pointer font-Audowide transition-colors duration-200;
   }
   button:hover {
     @apply border-[rgba(92,105,247,0.5)] border-2;

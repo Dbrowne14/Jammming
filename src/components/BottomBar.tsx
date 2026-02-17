@@ -78,9 +78,9 @@ const BottomBar = ({
             )}
           </form>
         </div>
-        <div className="inline-flex justify-center items-center w-fit h-full rounded-2xl bg-[rgba(238,184,239,0.5)] gap-1 px-2">
-          <h2 className="font-bold text-center">Score:</h2>
-          <h2 className="font-bold pb-0.5 text-center">99</h2>
+        <div className="inline-flex justify-center items-center w-fit h-full  gap-1 ">
+          <h2 className="font-bold font-[Audiowide] text-[rgb(144,90,144)]">Score:</h2>
+          <h2 className="font-bold font-[Audiowide] text-center rounded-2xl bg-[rgba(238,184,239,0.5)] px-2">99</h2>
         </div>
       </div>
     </div>
