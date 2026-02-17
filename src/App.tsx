@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import SearchBar from "./components/SearchBar.tsx";
-import SearchResults from "./components/SearchResults.tsx";
-import PlayList from "./components/PlayList.tsx";
+import SearchBar from "./components/Main/SearchBar.tsx";
+import SearchResults from "./components/Main/SearchResults.tsx";
+import PlayList from "./components/Main/PlayList.tsx";
 import Spotify from "./utils/Spotify.ts";
-import { type Track } from "./components/Track.tsx";
+import { type Track } from "./types/types.ts";
 import BottomBar from "./components/BottomBar.tsx";
+import Header from "./components/Header.tsx";
 
 function App() {
   //get token on render
@@ -67,29 +68,17 @@ function App() {
   return (
     <div className="flex justify-center">
       <div className="flex flex-col max-w-6xl items-center gap-2 text-[rgb(33,8,36)] font-[monospace] h-screen w-full p-2">
-        <div className="flex flex-col gap-2 justify-center items-center my-5">
-          <h1>|0 Songs</h1>
-          <div className="inline-flex gap-2">
-            <h3 className="w-fit p-0.5 text-[rgb(181,138,170)] font-[Audiowide] text-[0.8rem] text-start">
-              Create the perfect{" "}
-              <span className="font-bold text-[rgb(91,89,89)]">ten</span> song,{" "}
-              <br />{" "}
-              <span className="font-bold text-[rgb(91,89,89)]">thirty five</span>{" "}
-              minute playlist
-            </h3>
-            <div className="flex flex-col justify-center">
-              <h2 className="">Todays Theme:</h2>
-              <h2 className=" bg-[rgba(13,3,13,0.2)] px-2 rounded-2xl">David Bowie Songs</h2>
-            </div>
-          </div>
-        </div>
+        <Header />
         <SearchBar onSearch={handleSearch} />
         <div className="w-full  flex-1 grid grid-rows-[1fr_1fr] sm:grid-rows-none sm:grid-cols-[1fr_1fr] justify-items-stretch items-stretch gap-1  rounded-t-2xl overflow-y-auto">
           <div className="panel rounded-t-2xl">
             <SearchResults tracks={searchResults} addTrack={addTrack} />
           </div>
           <div className="panel rounded-t-2xl">
-            <PlayList removeTrack={removeTrack} playListTracks={playListTracks} />
+            <PlayList
+              removeTrack={removeTrack}
+              playListTracks={playListTracks}
+            />
           </div>
         </div>
         <BottomBar

@@ -1,5 +1,5 @@
 import { generateCodeChallenge, generateRandomString } from "./Pkce";
-import type { Track } from "../components/Track";
+import type { Track } from "../components/Fetched_Components/Track";
 const clientId = "2530f775178c451fa0a3f602fde9c0ed";
 // const redirectUri = "https://davejams.netlify.app/" /*netifly redirect - for publication*/
 const redirectUri = "http://127.0.0.1:5173/"; /*local redirec - for testing*/
@@ -53,7 +53,6 @@ const Spotify = {
     if (!codeVerifier) {
       throw new Error("Missing code_verifier in localStorage");
     }
-    
 
     const payload = {
       method: "POST",
@@ -123,7 +122,7 @@ const Spotify = {
   async getRefreshToken() {
     // refresh token that has been previously stored
     const refreshToken = localStorage.getItem("refresh_token");
-        if (!refreshToken) {
+    if (!refreshToken) {
       throw new Error("Missing refreshToken in localStorage");
     }
 
@@ -149,7 +148,7 @@ const Spotify = {
     const response = await res.json();
 
     localStorage.setItem("access_token", response.access_token);
-        localStorage.setItem(
+    localStorage.setItem(
       "expires_at",
       String(Date.now() + response.expires_in * 1000),
     );
@@ -160,7 +159,7 @@ const Spotify = {
     return response.access_token;
   },
 
-  async searchForResults(track:string) {
+  async searchForResults(track: string) {
     //handle logic
 
     const token = await this.getValidAccessToken();
@@ -197,7 +196,7 @@ const Spotify = {
     }
   },
 
-  async savePlaylist(playlistName:string, playlistTracks:Track[]) {
+  async savePlaylist(playlistName: string, playlistTracks: Track[]) {
     //handle logic
     const searchBase = "https://api.spotify.com/v1/me";
     const token = await this.getValidAccessToken();

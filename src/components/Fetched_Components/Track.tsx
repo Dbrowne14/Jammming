@@ -1,16 +1,4 @@
-export interface Trackprops extends Track {
-    showButton: boolean
-    addTrack?: (param: Track) => void
-    removeTrack?: (param:Track) => void
-}
-
-export interface Track {
-    id: string
-    trackName: string 
-    trackArtist: string
-    length: string
-    uri: string  
-}
+import type { Trackprops } from "../../types/types"
 
 
 export default function Track({id, trackName, trackArtist, length, showButton, addTrack, removeTrack, uri}: Trackprops) {

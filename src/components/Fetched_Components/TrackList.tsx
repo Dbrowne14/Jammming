@@ -1,13 +1,5 @@
-import Track from "./Track.js";
-import type { Track as Tracks, Trackprops } from "./Track.js";
-
-export type TrackListProps = Pick<
-  Trackprops,
-  "showButton" | "addTrack" | "removeTrack"
-> & {
-  tracks: Tracks[];
-  listType: string;
-};
+import type { TrackListProps } from "../../types/types";
+import Track from "./Track";
 
 export default function TrackList({
   tracks = [],

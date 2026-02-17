@@ -1,4 +1,5 @@
-import TrackList, {type TrackListProps} from "./TrackList.js";
+import TrackList from "../Fetched_Components/TrackList";
+import type { TrackListProps } from "../../types/types";
 
 
 export default function SearchResults({ tracks, addTrack }: Pick <TrackListProps, "tracks" | "addTrack">) {

@@ -1,5 +1,5 @@
-
-import TrackList, { type TrackListProps } from "./TrackList.js";
+import TrackList from "../Fetched_Components/TrackList.js";
+import type { TrackListProps } from "../../types/types.js";
 
 type PlayListViewProps = Pick<TrackListProps, "removeTrack"> & {
   playListTracks: TrackListProps["tracks"];
@@ -11,7 +11,6 @@ export default function PlayList({
 }: PlayListViewProps) {
   //handle playlist name
 
-  
   return (
     <div>
       <div className="header-box inline-flex gap-2 items-center justify-center w-full">

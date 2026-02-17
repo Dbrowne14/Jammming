@@ -1,14 +1,6 @@
 import { useState, type ChangeEvent } from "react";
-import type { TrackListProps } from "./TrackList";
+import type { PlayListProps } from "../types/types";
 
-type PlayListProps = {
-  savePlaylist: (
-    playListName: string,
-    playListTracks: TrackListProps["tracks"],
-  ) => void;
-  playListTracks: TrackListProps["tracks"];
-  setPlayListTracks: (playListTracks: TrackListProps["tracks"]) => void;
-};
 
 const BottomBar = ({
   savePlaylist,
@@ -40,7 +32,7 @@ const BottomBar = ({
     console.log(playListName);
   }
   return (
-    <div className="w-full h-10 flex items-center">
+    <footer className="w-full h-10 flex items-center">
       <div className="inline-flex justify-between items-center h-[75%] w-full">
         <div className="flex-1 h-full max-w-2xl">
           <form
@@ -83,7 +75,7 @@ const BottomBar = ({
           <h2 className="font-bold font-[Audiowide] text-center rounded-2xl bg-[rgba(238,184,239,0.5)] px-2">99</h2>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
