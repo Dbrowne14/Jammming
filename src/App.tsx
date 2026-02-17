@@ -65,31 +65,33 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-2 text-[rgb(33,8,36)] font-[monospace] h-screen w-full p-2">
-      <div className="flex flex-col justify-center items-center my-5">
-        <h1>|Ø Songs</h1>
-        <h3 className="w-fit p-0.5 text-[rgb(181,138,170)] font-[Audiowide]">
-          Create the perfect{" "}
-          <span className="font-bold text-[rgb(91,89,89)]">ten</span> song,{" "}
-          <br />{" "}
-          <span className="font-bold text-[rgb(91,89,89)]">thirty five</span>{" "}
-          minute playlist
-        </h3>
-      </div>
-      <SearchBar onSearch={handleSearch} />
-      <div className="w-full max-w-6xl flex-1 grid grid-rows-[1fr_1fr] sm:grid-rows-none sm:grid-cols-[1fr_1fr] justify-items-stretch items-stretch gap-1  rounded-t-2xl overflow-y-auto">
-        <div className="panel rounded-t-2xl">
-          <SearchResults tracks={searchResults} addTrack={addTrack} />
+    <div className="flex justify-center">
+      <div className="flex flex-col max-w-6xl items-center gap-2 text-[rgb(33,8,36)] font-[monospace] h-screen w-full p-2">
+        <div className="flex flex-col justify-center items-center my-5">
+          <h1>|Ø Songs</h1>
+          <h3 className="w-fit p-0.5 text-[rgb(181,138,170)] font-[Audiowide]">
+            Create the perfect{" "}
+            <span className="font-bold text-[rgb(91,89,89)]">ten</span> song,{" "}
+            <br />{" "}
+            <span className="font-bold text-[rgb(91,89,89)]">thirty five</span>{" "}
+            minute playlist
+          </h3>
         </div>
-        <div className="panel rounded-t-2xl">
-          <PlayList removeTrack={removeTrack} playListTracks={playListTracks} />
+        <SearchBar onSearch={handleSearch} />
+        <div className="w-full  flex-1 grid grid-rows-[1fr_1fr] sm:grid-rows-none sm:grid-cols-[1fr_1fr] justify-items-stretch items-stretch gap-1  rounded-t-2xl overflow-y-auto">
+          <div className="panel rounded-t-2xl">
+            <SearchResults tracks={searchResults} addTrack={addTrack} />
+          </div>
+          <div className="panel rounded-t-2xl">
+            <PlayList removeTrack={removeTrack} playListTracks={playListTracks} />
+          </div>
         </div>
+        <BottomBar
+          savePlaylist={Spotify.savePlaylist.bind(Spotify)}
+          playListTracks={playListTracks}
+          setPlayListTracks={setPlayListTracks}
+        />
       </div>
-      <BottomBar
-        savePlaylist={Spotify.savePlaylist.bind(Spotify)}
-        playListTracks={playListTracks}
-        setPlayListTracks={setPlayListTracks}
-      />
     </div>
   );
 }
