@@ -1,0 +1,90 @@
+import { useState, type ChangeEvent } from "react";
+import type { TrackListProps } from "./TrackList";
+
+type PlayListProps = {
+  savePlaylist: (
+    playListName: string,
+    playListTracks: TrackListProps["tracks"],
+  ) => void;
+  playListTracks: TrackListProps["tracks"];
+  setPlayListTracks: (playListTracks: TrackListProps["tracks"]) => void;
+};
+
+const BottomBar = ({
+  savePlaylist,
+  playListTracks,
+  setPlayListTracks,
+}: PlayListProps) => {
+  //handle playlist name
+  const [playListName, setPlayListName] = useState("");
+  const [popUp, setPopUp] = useState(false);
+  const [emptyPopUp, setEmptyPopUp] = useState(false);
+
+  function handleNameChange(e: ChangeEvent<HTMLInputElement>) {
+    setPlayListName(e.target.value);
+  }
+
+  function handleSubmit() {
+    /*if no tracks or entry*/
+    if (!playListTracks || playListTracks.length !== 10) {
+      setEmptyPopUp(true);
+      setTimeout(() => setEmptyPopUp(false), 1000);
+      return;
+    }
+
+    savePlaylist(playListName, playListTracks);
+    setPlayListName("");
+    setPlayListTracks([]);
+    setPopUp(true);
+    setTimeout(() => setPopUp(false), 1000);
+    console.log(playListName);
+  }
+  return (
+    <div className="w-full max-w-6xl h-10 flex items-center">
+      <div className="inline-flex justify-between items-center w-full">
+        <div className="flex-1 max-w-2xl">
+          <form
+            onSubmit={handleSubmit} // handleSubmit will receive the event
+            className="inline-flex gap-2 items-center justify-center h-full px-2 w-full"
+          >
+            <h2 className="font-bold text-center hidden sm:block">
+              Save Playlist:
+            </h2>
+            <input
+              value={playListName}
+              onChange={handleNameChange}
+              placeholder="Playlist Name"
+              type="text"
+              name="newplaylist"
+              id="newplaylist"
+              className="h-full"
+            />
+            <button type="submit" className="h-full">
+              Save
+            </button>
+            {emptyPopUp && (
+              <div className="overlay">
+                <div className="popUp">
+                  <p>Must have exactly 10 tracks</p>
+                </div>
+              </div>
+            )}
+            {popUp && (
+              <div className="overlay">
+                <div className="popUp">
+                  <p>Successfully Saved to Spotify</p>
+                </div>
+              </div>
+            )}
+          </form>
+        </div>
+        <div className="inline-flex justify-center items-center w-fit rounded-2xl bg-[rgba(238,184,239,0.5)] gap-1 px-2">
+          <h2 className="font-bold text-center">Score:</h2>
+          <h2 className="font-bold pb-0.5 text-center">99</h2>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BottomBar;

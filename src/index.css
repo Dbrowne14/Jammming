@@ -28,12 +28,9 @@
   }
 
   input {
-    @apply bg-[#f9f8f9] rounded-2xl flex-1 border border-[#ece0fa] h-fit w-full transition-all duration-200 ease-in-out;
+    @apply bg-[rgba(1,1,1,0.5)] text-white py-0.5 px-1 rounded-2xl flex-1 border border-[#ece0fa] transition-all duration-200 ease-in-out;
   }
 
-  input::placeholder {
-    @apply text-[#674a88] opacity-[0.8] italic font-[Audiowide];
-  }
 }
 
 @layer components {
@@ -41,7 +38,7 @@
     @apply bg-[rgba(13,3,13,0.3)] w-full text-[0.8rem] text-left ;
   }
   .header-box {
-    @apply sticky top-0 bg-[rgb(18,17,17)] h-[2.2rem] border-b-[whitesmoke] border-b;
+    @apply sticky top-0 bg-[rgb(18,17,17)] h-[2.2rem] border-b-[whitesmoke] border-b sm:rounded-t-2xl
   }
   .overlay {
     @apply fixed flex items-start justify-start pointer-events-none;
