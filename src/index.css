@@ -13,7 +13,7 @@
   }
 
   h1 {
-    @apply text-[2.5rem] leading-[1.1] mt-10;
+    @apply text-[2.5rem] leading-[1.1];
   } /* make text variable */
 
   button {
@@ -38,10 +38,21 @@
 
 @layer components {
   .panel {
-    @apply bg-[rgba(13,3,13,0.3)] rounded-xl w-full h-full text-[0.8rem] text-left overflow-y-auto;
+    @apply bg-[rgba(13,3,13,0.3)] w-full text-[0.8rem] text-left ;
+  }
+  .header-box {
+    @apply sticky top-0 bg-[rgb(18,17,17)] h-[2.2rem] border-b-[whitesmoke] border-b;
+  }
+  .overlay {
+    @apply fixed flex items-start justify-start pointer-events-none;
+  }
+
+  .popUp {
+    @apply bg-[#f3e8ff] font-bold text-[#291a3d] rounded-[15px] 
+           shadow-[0_8px_20px_rgba(217,70,239,0.2)] 
+           animate-[fade_0.5s_ease];
   }
 }
-
 
 :root {
   color-scheme: light dark;
@@ -50,5 +61,3 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-

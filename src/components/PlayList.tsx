@@ -1,6 +1,5 @@
 import { useState, type ChangeEvent } from "react";
 import TrackList, { type TrackListProps } from "./TrackList.js";
-import styles from "../styles/playlist.module.css";
 
 type PlayListProps = Pick<TrackListProps, "removeTrack"> & {
   savePlaylist: (playListName: string, playListTracks: TrackListProps["tracks"]) => void
@@ -41,7 +40,7 @@ export default function PlayList({
 
   return (
     <div>
-      <div className={styles.main}>
+      <div className="header-box inline-flex gap-2 items-center justify-center px-2 w-full">
         <input
           value={playListName}
           onChange={handleNameChange}
@@ -49,23 +48,23 @@ export default function PlayList({
           type="text"
           name="newplaylist"
           id="newplaylist"
-          className={styles.input}
+          className="w-40"
         />
         <button type="button" onClick={handleSubmit}>
           Save
         </button>
 
         {emptyPopUp && (
-          <div className={styles.overlay}>
-            <div className={styles.popUp}>
+          <div className="overlay">
+            <div className="popUp">
               <p>You must have exactly 10 tracks</p>
             </div>
           </div>
         )}
 
         {popUp && (
-          <div className={styles.overlay}>
-            <div className={styles.popUp}>
+          <div className="overlay">
+            <div className="popUp">
               <p>Succesfully Saved to Spotify</p>
             </div>
           </div>
