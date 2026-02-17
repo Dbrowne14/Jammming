@@ -18,7 +18,7 @@ export default function SearchBar({onSearch}:SearchBar) {
     }
 
     return(
-        <div className="px-2 w-full">  
+        <div className="px-2 w-full max-w-xl">  
             <h2 className="font-[Audiowide] text-[rgb(144,90,144)]">Search for your song</h2>
             <form onSubmit={handleSubmit} className="inline-flex gap-2 items-center mt-0.5 w-full">
                 <input 

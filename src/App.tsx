@@ -64,7 +64,7 @@ function App() {
   }
 
   return (
-      <div className="flex flex-col gap-2 text-[rgb(33,8,36)] font-[monospace] mb-2 h-screen w-full">
+      <div className="flex flex-col items-center gap-2 text-[rgb(33,8,36)] font-[monospace] h-screen w-full">
         <div className="flex flex-col justify-center items-center my-5">
           <h1>|Ø Songs</h1>
           <h3 className="w-fit p-0.5 text-[rgb(181,138,170)] font-[Audiowide]">
@@ -76,7 +76,7 @@ function App() {
           </h3>
         </div>
         <SearchBar onSearch={handleSearch} />
-        <div className="w-full grid grid-rows-[1fr_1fr] sm:grid-cols-[1fr_1fr] justify-items-stretch items-stretch gap-1 px-2 rounded-t-2xl overflow-y-auto">
+        <div className="w-full max-w-6xl flex-1 grid grid-rows-[1fr_1fr] sm:grid-rows-none sm:grid-cols-[1fr_1fr] justify-items-stretch items-stretch gap-1 px-2 pb-2 rounded-t-2xl overflow-y-auto">
           <div className="panel">
             <SearchResults tracks={searchResults} addTrack={addTrack} />
           </div>
