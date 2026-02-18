@@ -1,5 +1,5 @@
 import { generateCodeChallenge, generateRandomString } from "./Pkce";
-import type { Track } from "../components/Fetched_Components/Track";
+import type { Track } from "../types/types";
 const clientId = "2530f775178c451fa0a3f602fde9c0ed";
 // const redirectUri = "https://davejams.netlify.app/" /*netifly redirect - for publication*/
 const redirectUri = "http://127.0.0.1:5173/"; /*local redirec - for testing*/
