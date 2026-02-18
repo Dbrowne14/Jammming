@@ -9,6 +9,7 @@ export interface Track {
   trackName: string;
   trackArtist: string;
   length: string;
+  lengthSeconds:number;
   uri: string;
 }
 

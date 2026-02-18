@@ -2,19 +2,21 @@ import type { Trackprops } from "../../types/types"
 import { useSpotify } from "../../context/SpotfyContext"
 
 
-export default function Track({id, trackName, trackArtist, length, showButton, uri}: Trackprops) {
+
+export default function Track({id, trackName, trackArtist, length, lengthSeconds, showButton, uri}: Trackprops) {
     const {addTrack, removeTrack} = useSpotify()
+
 
     function handleAdd() {
         if(addTrack) {  
-            addTrack({id,trackName,trackArtist, uri, length})
+            addTrack({id,trackName,trackArtist, uri, length,lengthSeconds})
             console.log("I am being clicked")
         }
     }
 
     function handleRemove() {
         if(removeTrack) {
-            removeTrack({id,trackName, trackArtist, uri, length})
+            removeTrack({id,trackName, trackArtist, uri, length,lengthSeconds})
         }
     }
 

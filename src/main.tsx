@@ -11,6 +11,3 @@ createRoot(document.getElementById('root')!).render(
     </SpotifyProvider>
   </StrictMode>,
 )
-
-//    const {addTrack, removeTrack}= useSpotify();
-//import { useSpotify } from "../../context/SpotfyContext"

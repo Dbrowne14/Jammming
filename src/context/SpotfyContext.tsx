@@ -10,13 +10,15 @@ type SpotifyContextType = {
   setPlayListTracks: React.Dispatch<React.SetStateAction<Track[]>>;
   searchResults: Track[];
   handleSearch: (searchValue: string) => Promise<void>;
+  totalPlaylistLength: number;
 };
 
 const SpotifyContext = createContext<SpotifyContextType | null>(null);
 
 export function useSpotify() {
-    const context = useContext(SpotifyContext);
-      if (!context) throw new Error("useSpotify must be used inside SpotifyProvider");
+  const context = useContext(SpotifyContext);
+  if (!context)
+    throw new Error("useSpotify must be used inside SpotifyProvider");
   return context;
 }
 
@@ -42,12 +44,19 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
       trackName: track.name,
       trackArtist: track.artists.map((a) => a.name).join(", "),
       length: minutesToSeconds(track.duration_ms),
+      lengthSeconds: track.duration_ms,
       uri: track.uri,
     }));
 
     setSearchResults(mappedResults);
   }
-   return (
+
+  const totalPlaylistLength = playListTracks.reduce(
+    (sum, track) => sum + track.lengthSeconds,
+    0,
+  );
+
+  return (
     <SpotifyContext.Provider
       value={{
         playListTracks,
@@ -56,10 +65,10 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
         removeTrack,
         searchResults,
         handleSearch,
+        totalPlaylistLength,
       }}
     >
       {children}
     </SpotifyContext.Provider>
   );
 }
-

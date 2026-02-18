@@ -9,7 +9,7 @@ const Header = () => {
           Create the perfect{" "}
           <span className="font-bold text-[rgb(91,89,89)]">ten</span> song,{" "}
           <br />{" "}
-          <span className="font-bold text-[rgb(91,89,89)]">thirty five</span>{" "}
+          <span className="font-bold text-[rgb(91,89,89)]">forty</span>{" "}
           minute playlist
         </h3>
         <div className="flex flex-col justify-center">
