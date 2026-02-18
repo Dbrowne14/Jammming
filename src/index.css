@@ -43,7 +43,7 @@
     @apply bg-[rgba(13,3,13,0.3)] w-full text-[0.8rem] text-left ;
   }
   .header-box {
-    @apply sticky top-0 bg-[rgb(18,17,17)] h-[2.2rem] border-b-[whitesmoke] border-b sm:rounded-t-2xl
+    @apply sticky top-0 bg-[rgba(13,3,13,0.3)] h-[2.2rem] border-b-[whitesmoke] border-b sm:rounded-t-xl
   }
   .overlay {
     @apply fixed flex items-start justify-start pointer-events-none;

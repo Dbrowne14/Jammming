@@ -9,7 +9,7 @@ export default function SearchResults() {
   return (
     <div>
       <div className="header-box flex items-center justify-center">
-        <h2 className="font-[Audiowide] text-[rgb(144,90,144)] text-center">Search Results</h2>
+        <h2 className="font-[Audiowide] text-[rgb(203,151,203)] text-center">Search Results</h2>
       </div>
       <TrackList
         tracks={searchResults}
