@@ -9,3 +9,18 @@ export function minutesToSeconds(ms: number) {
 }
 
 
+export function getScoreColor (score:number) {
+  if(score < 70 ) {
+    return "text-red-400"
+  }
+  if(score < 80) {
+    return "text-amber-400"
+  }
+  if(score < 90) {
+    return "text-yellow-400"
+  }
+  if(score < 95) {
+    return "text-green-400"
+  }
+  return "text-green-600"
+}
