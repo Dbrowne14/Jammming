@@ -1,7 +1,9 @@
 import type { Trackprops } from "../../types/types"
+import { useSpotify } from "../../context/SpotfyContext"
 
 
-export default function Track({id, trackName, trackArtist, length, showButton, addTrack, removeTrack, uri}: Trackprops) {
+export default function Track({id, trackName, trackArtist, length, showButton, uri}: Trackprops) {
+    const {addTrack, removeTrack} = useSpotify()
 
     function handleAdd() {
         if(addTrack) {  

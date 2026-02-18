@@ -1,16 +1,14 @@
 import { useState, type ChangeEvent } from "react";
-import type { PlayListProps } from "../../types/types";
+import { useSpotify } from "../../context/SpotfyContext";
+import Spotify from "../../utils/Spotify";
 
-const BottomBar = ({
-  savePlaylist,
-  playListTracks,
-  setPlayListTracks,
-}: PlayListProps) => {
+const BottomBar = () => {
   //handle playlist name
   const [playListName, setPlayListName] = useState("");
   const [popUp, setPopUp] = useState(false);
   const [emptyPopUp, setEmptyPopUp] = useState(false);
-
+  const { playListTracks, setPlayListTracks } = useSpotify();
+  const savePlayList = Spotify.savePlaylist.bind(Spotify);
   function handleNameChange(e: ChangeEvent<HTMLInputElement>) {
     setPlayListName(e.target.value);
   }
@@ -23,7 +21,7 @@ const BottomBar = ({
       return;
     }
 
-    savePlaylist(playListName, playListTracks);
+    savePlayList(playListName, playListTracks);
     setPlayListName("");
     setPlayListTracks([]);
     setPopUp(true);

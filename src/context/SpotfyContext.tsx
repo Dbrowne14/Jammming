@@ -7,7 +7,7 @@ type SpotifyContextType = {
   playListTracks: Track[];
   addTrack: (track: Track) => void;
   removeTrack: (track: Track) => void;
-  setPlaylistTracks: React.Dispatch<React.SetStateAction<Track[]>>;
+  setPlayListTracks: React.Dispatch<React.SetStateAction<Track[]>>;
   searchResults: Track[];
   handleSearch: (searchValue: string) => Promise<void>;
 };
@@ -33,6 +33,7 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
   function removeTrack(track: Track) {
     setPlayListTracks(playListTracks.filter((t) => t.id !== track.id));
   }
+
   async function handleSearch(searchValue: string) {
     const results: SpotifyTrack[] = await Spotify.searchForResults(searchValue);
     console.log(results);
@@ -61,4 +62,4 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
     </SpotifyContext.Provider>
   );
 }
-}
+

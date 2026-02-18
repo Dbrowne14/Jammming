@@ -1,16 +1,10 @@
 import TrackList from "../Fetched_Components/TrackList.js";
-import type { TrackListProps } from "../../types/types.js";
 
-type PlayListViewProps = Pick<TrackListProps, "removeTrack"> & {
-  playListTracks: TrackListProps["tracks"];
-};
+import { useSpotify } from "../../context/SpotfyContext.js";
 
-export default function PlayList({
-  playListTracks,
-  removeTrack,
-}: PlayListViewProps) {
-  //handle playlist name
+export default function PlayList() {
 
+  const { playListTracks } = useSpotify();
   return (
     <div>
       <div className="header-box inline-flex gap-2 items-center justify-center w-full">
@@ -20,8 +14,6 @@ export default function PlayList({
         tracks={playListTracks}
         showButton={false}
         listType="playList"
-        removeTrack={removeTrack}
-        addTrack={undefined}
       />
     </div>
   );

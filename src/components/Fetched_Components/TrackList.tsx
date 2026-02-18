@@ -4,8 +4,6 @@ import Track from "./Track";
 export default function TrackList({
   tracks = [],
   showButton,
-  addTrack,
-  removeTrack,
   listType,
 }: TrackListProps) {
   return (
@@ -15,8 +13,6 @@ export default function TrackList({
           key={`${listType}--${track.id}`}
           {...track}
           showButton={showButton}
-          addTrack={addTrack}
-          removeTrack={removeTrack}
         />
       ))}
     </div>

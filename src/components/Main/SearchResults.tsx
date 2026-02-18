@@ -1,19 +1,20 @@
 import TrackList from "../Fetched_Components/TrackList";
-import type { TrackListProps } from "../../types/types";
+import { useSpotify } from "../../context/SpotfyContext";
 
 
-export default function SearchResults({ tracks, addTrack }: Pick <TrackListProps, "tracks" | "addTrack">) {
+export default function SearchResults() {
+
+  const {searchResults} = useSpotify()
+
   return (
     <div>
       <div className="header-box flex items-center justify-center">
         <h2 className="font-[Audiowide] text-[rgb(144,90,144)] text-center">Search Results</h2>
       </div>
       <TrackList
-        tracks={tracks}
+        tracks={searchResults}
         showButton={true}
-        addTrack={addTrack}
         listType="searchResults"
-        removeTrack={undefined}
       />
     </div>
   );
