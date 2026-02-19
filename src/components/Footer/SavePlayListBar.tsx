@@ -30,7 +30,7 @@ const SavePlayListBar = () => {
   }
 
   return (
-    <div className="flex-1 h-full max-w-2xl">
+    <div className="flex-1 h-8 max-w-2xl">
       <form
         onSubmit={handleSubmit} // handleSubmit will receive the event
         className="inline-flex gap-2 items-center justify-center h-full px-2 w-full"

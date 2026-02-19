@@ -25,7 +25,7 @@
     @apply rounded-2xl border border-transparent py-0.5 px-1 text-[0.7rem] text-white bg-black cursor-pointer font-Audowide transition-colors duration-200;
   }
   button:hover {
-    @apply border-[rgba(92,105,247,0.5)] border-2;
+    @apply border-[rgba(92,105,247,0.5)] border-2 text-[rgb(198,86,86)];
   }
   button:focus,
   button:focus-visible {

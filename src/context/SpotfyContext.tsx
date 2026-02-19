@@ -11,6 +11,7 @@ type SpotifyContextType = {
   searchResults: Track[];
   handleSearch: (searchValue: string) => Promise<void>;
   totalPlaylistLength: number;
+  totalPlayListTrackLength: number;
 };
 
 const SpotifyContext = createContext<SpotifyContextType | null>(null);
@@ -51,6 +52,8 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
     setSearchResults(mappedResults);
   }
 
+  const totalPlayListTrackLength = playListTracks.length
+
   const totalPlaylistLength = playListTracks.reduce(
     (sum, track) => sum + track.lengthSeconds,
     0,
@@ -66,6 +69,7 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
         searchResults,
         handleSearch,
         totalPlaylistLength,
+        totalPlayListTrackLength
       }}
     >
       {children}
