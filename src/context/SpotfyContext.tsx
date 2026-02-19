@@ -12,8 +12,8 @@ type SpotifyContextType = {
   handleSearch: (searchValue: string) => Promise<void>;
   totalPlaylistLength: number;
   totalPlayListTrackLength: number;
-  searchList: number;
-  setSearchList: React.Dispatch<React.SetStateAction<number>>;
+  searchLimit: number;
+  setSearchLimit: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const SpotifyContext = createContext<SpotifyContextType | null>(null);
@@ -28,7 +28,7 @@ export function useSpotify() {
 export function SpotifyProvider({ children }: { children: React.ReactNode }) {
   const [playListTracks, setPlayListTracks] = useState<Track[]>([]);
   const [searchResults, setSearchResults] = useState<Track[]>([]);
-  const [searchList, setSearchList] = useState(0);
+  const [searchLimit, setSearchLimit] = useState(0);
 
   function addTrack(track: Track) {
     if (!playListTracks.find((t) => t.id === track.id)) {
@@ -73,8 +73,8 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
         handleSearch,
         totalPlaylistLength,
         totalPlayListTrackLength,
-        searchList,
-        setSearchList,
+        searchLimit,
+        setSearchLimit,
       }}
     >
       {children}
