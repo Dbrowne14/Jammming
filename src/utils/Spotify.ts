@@ -160,7 +160,7 @@ const Spotify = {
     return response.access_token;
   },
 
-  async searchForResults(track: string) {
+  async searchForResults(track: string, limit:number) {
     //handle logic
 
     const token = await this.getValidAccessToken();
@@ -174,7 +174,7 @@ const Spotify = {
     console.log("Track:", track);
 
     const searchBase = "https://api.spotify.com/v1/search";
-    const endPoint = `${searchBase}?q=${encodeURIComponent(track)}&type=track&limit=10`;
+    const endPoint = `${searchBase}?q=${encodeURIComponent(track)}&type=track&limit=${limit}`;
 
     try {
       const response = await fetch(endPoint, {

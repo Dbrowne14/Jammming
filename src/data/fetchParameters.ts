@@ -1,1 +1,1 @@
-export const fetchParams = [10, 15, 20];
+export const fetchParams = [10, 15, 20, 30];

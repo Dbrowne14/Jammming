@@ -41,7 +41,7 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
   }
 
   async function handleSearch(searchValue: string) {
-    const results: SpotifyTrack[] = await Spotify.searchForResults(searchValue);
+    const results: SpotifyTrack[] = await Spotify.searchForResults(searchValue,searchLimit);
     console.log(results);
     const mappedResults: Track[] = results.map((track) => ({
       id: track.id,
