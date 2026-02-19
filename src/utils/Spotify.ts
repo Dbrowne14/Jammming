@@ -6,6 +6,7 @@ const redirectUri = "http://127.0.0.1:5173/"; /*local redirec - for testing*/
 const url = "https://accounts.spotify.com/api/token";
 const scope = "playlist-modify-private  playlist-modify-public";
 
+
 const Spotify = {
   //code for authentication using Authorization Code with PKCE Flow as per Spotify documentation guidelines
   codeVerifier: null as string | null, //store codeVerifier once

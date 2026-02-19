@@ -1,5 +1,3 @@
-import type { Track } from "../types/types";
-
 export function minutesToSeconds(ms: number) {
   const totalSeconds = Math.floor(ms / 1000);
   const minutes = Math.floor(totalSeconds / 60);
@@ -40,16 +38,11 @@ export const calculateBaseTopScore = (
   }
 };
 
-
-
-
 export const numToZero = (
   lengthParam: number,
-  finalScore: number | (() => number)
+  finalScore: number | (() => number),
 ): number => {
   if (lengthParam === 0) return 0;
 
-  return typeof finalScore === "function"
-    ? finalScore()
-    : finalScore;
+  return typeof finalScore === "function" ? finalScore() : finalScore;
 };
