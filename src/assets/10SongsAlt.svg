@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Transparent background -->
+
+  <!-- Outer subtle glow -->
+  <circle cx="256" cy="256" r="230" fill="#1DB954" opacity="0.12"/>
+
+  <!-- Main circle -->
+  <circle cx="256" cy="256" r="210" fill="#1DB954"/>
+
+  <!-- Vinyl record (the 0) -->
+  <circle cx="300" cy="220" r="90" fill="black"/>
+  <circle cx="300" cy="220" r="18" fill="#1DB954"/>
+  <circle cx="300" cy="220" r="60" fill="none" stroke="#1DB954" stroke-width="3" opacity="0.6"/>
+
+  <!-- Play bar (the 1) -->
+  <rect x="170" y="140" width="28" height="160" rx="14" fill="black"/>
+
+  <!-- Spotify-style waves below vinyl -->
+  <path d="M200 340 C250 320, 350 320, 400 340" stroke="black" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <path d="M210 365 C255 350, 345 350, 390 365" stroke="black" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <path d="M220 385 C260 375, 340 375, 380 385" stroke="black" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.5"/>
+</svg>
+

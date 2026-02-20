@@ -1,7 +1,10 @@
 const Header = () => {
   return (
     <header className="flex flex-col gap-2 justify-center items-center my-5">
-      <h1>|0 Songs</h1>
+      <div className="inline-flex gap-2 h-14 items-center ">
+        <img src="/10Songs.svg" className="h-full" />
+        <h1 className="align-middle h-fit">Songs</h1>
+      </div>
       <div className="inline-flex gap-2">
         <h3 className="w-fit p-0.5 text-[rgb(181,138,170)] font-[Audiowide] text-[0.8rem] text-start">
           Create the perfect{" "}

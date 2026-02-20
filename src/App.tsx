@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col max-w-6xl items-center gap-2 text-[rgb(33,8,36)] font-[monospace] min-h-screen w-full p-2">
+      <div className="flex flex-col max-w-6xl items-center gap-2 text-[rgb(33,8,36)] font-[monospace] h-screen overflow-hidden w-full p-2">
         <Header />
         <Main />
         <BottomBar />
