@@ -1,10 +1,10 @@
 import TrackList from "../Fetched_Components/TrackList";
 import { useSpotify } from "../../context/SpotfyContext";
 import { fetchParams } from "../../data/fetchParameters";
+import { useScrollState } from "../../hooks/useScrollState";
 
 export default function SearchResults() {
   const { searchResults, setSearchLimit } = useSpotify();
-
   return (
     <div>
       <div className="header-box items-center justify-center inline-flex gap-4 w-full">
