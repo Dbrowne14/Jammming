@@ -28,7 +28,7 @@ export function useSpotify() {
 export function SpotifyProvider({ children }: { children: React.ReactNode }) {
   const [playListTracks, setPlayListTracks] = useState<Track[]>([]);
   const [searchResults, setSearchResults] = useState<Track[]>([]);
-  const [searchLimit, setSearchLimit] = useState(0);
+  const [searchLimit, setSearchLimit] = useState(10);
 
   function addTrack(track: Track) {
     if (!playListTracks.find((t) => t.id === track.id)) {
