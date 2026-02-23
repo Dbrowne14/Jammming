@@ -1,4 +1,4 @@
-import TrackList from "../../components/Fetched_Components/TrackList";
+import TrackList from "../../components/FetchedComponents/TrackList";
 import { useSpotify } from "../../context/SpotfyContext";
 import { fetchParams } from "../../data/fetchParameters";
 
