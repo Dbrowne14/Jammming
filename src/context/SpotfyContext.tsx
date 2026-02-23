@@ -2,6 +2,8 @@ import { createContext, useState, useContext } from "react";
 import Spotify from "../utils/Spotify";
 import type { SpotifyTrack, Track } from "../types/types";
 import { minutesToSeconds, showNotification } from "../utils/utilityFns";
+import type { AlertType } from "../types/types";
+import AlertComponent from "@/components/ui/alertComponent";
 
 type SpotifyContextType = {
   playListTracks: Track[];
@@ -14,7 +16,8 @@ type SpotifyContextType = {
   totalPlayListTrackLength: number;
   searchLimit: number;
   setSearchLimit: React.Dispatch<React.SetStateAction<number>>;
-  notification: string | null;
+  notification: AlertType | null;
+  setNotification: React.Dispatch<React.SetStateAction<AlertType | null>>
 };
 
 const SpotifyContext = createContext<SpotifyContextType | null>(null);
@@ -30,11 +33,11 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
   const [playListTracks, setPlayListTracks] = useState<Track[]>([]);
   const [searchResults, setSearchResults] = useState<Track[]>([]);
   const [searchLimit, setSearchLimit] = useState(10);
-  const [notification, setNotification] = useState<string | null>(null);
+  const [notification, setNotification] = useState<AlertType | null>(null);
 
   function addTrack(track: Track) {
     if (playListTracks.length >= 10) {
-      showNotification("Playlist limit reached (10 tracks)", setNotification);
+      showNotification( "Playlist limit reached", "You are allowed a maximum of 10 tracks", setNotification);
       return;
     }
     if (!playListTracks.find((t) => t.id === track.id)) {
@@ -85,14 +88,11 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
         searchLimit,
         setSearchLimit,
         notification,
+        setNotification
       }}
     >
       {children}
-      {notification && (
-        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-500 rounded-2xl p-4 text-white">
-          {notification}
-        </div>
-      )}
+      {notification && <AlertComponent title={notification?.title} description={notification?.description} />}
     </SpotifyContext.Provider>
   );
 }

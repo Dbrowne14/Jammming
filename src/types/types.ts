@@ -37,3 +37,8 @@ export type SpotifyTrack = {
   duration_ms: number;
   uri: string;
 };
+
+export type AlertType = {
+  title: string | undefined;
+  description: string | undefined;
+};

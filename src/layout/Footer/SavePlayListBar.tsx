@@ -16,7 +16,7 @@ const SavePlayListBar = () => {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     /*if no tracks or entry*/
-    if (!playListTracks || playListTracks.length !== 10) {
+    if (!playListTracks) {
       setEmptyPopUp(true);
       setTimeout(() => setEmptyPopUp(false), 1000);
       return;

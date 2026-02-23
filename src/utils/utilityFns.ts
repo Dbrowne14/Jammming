@@ -1,3 +1,5 @@
+import type { AlertType } from "@/types/types";
+
 export function minutesToSeconds(ms: number) {
   const totalSeconds = Math.floor(ms / 1000);
   const minutes = Math.floor(totalSeconds / 60);
@@ -48,9 +50,10 @@ export const numToZero = (
 };
 
 export function showNotification(
-  msg: string,
-  setter: React.Dispatch<React.SetStateAction<string | null>>,
+  title:string, 
+  description:string,
+  setter: React.Dispatch<React.SetStateAction<AlertType | null>>,
 ) {
-  setter(msg);
-  setTimeout(() => setter(null), 3000);
+  setter({title, description});
+  setTimeout(() => setter(null), 2000);
 }
