@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import Spotify from "../utils/Spotify";
 import type { SpotifyTrack, Track } from "../types/types";
-import { minutesToSeconds } from "../utils/utilityFns";
+import { minutesToSeconds, showNotification } from "../utils/utilityFns";
 
 type SpotifyContextType = {
   playListTracks: Track[];
@@ -14,6 +14,7 @@ type SpotifyContextType = {
   totalPlayListTrackLength: number;
   searchLimit: number;
   setSearchLimit: React.Dispatch<React.SetStateAction<number>>;
+  notification: string | null;
 };
 
 const SpotifyContext = createContext<SpotifyContextType | null>(null);
@@ -29,8 +30,13 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
   const [playListTracks, setPlayListTracks] = useState<Track[]>([]);
   const [searchResults, setSearchResults] = useState<Track[]>([]);
   const [searchLimit, setSearchLimit] = useState(10);
+  const [notification, setNotification] = useState<string | null>(null);
 
   function addTrack(track: Track) {
+    if (playListTracks.length >= 10) {
+      showNotification("Playlist limit reached (10 tracks)", setNotification);
+      return;
+    }
     if (!playListTracks.find((t) => t.id === track.id)) {
       setPlayListTracks([...playListTracks, track]);
     }
@@ -41,7 +47,10 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
   }
 
   async function handleSearch(searchValue: string) {
-    const results: SpotifyTrack[] = await Spotify.searchForResults(searchValue,searchLimit);
+    const results: SpotifyTrack[] = await Spotify.searchForResults(
+      searchValue,
+      searchLimit,
+    );
     console.log(results);
     const mappedResults: Track[] = results.map((track) => ({
       id: track.id,
@@ -75,9 +84,15 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
         totalPlayListTrackLength,
         searchLimit,
         setSearchLimit,
+        notification,
       }}
     >
       {children}
+      {notification && (
+        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-500 rounded-2xl p-4 text-white">
+          {notification}
+        </div>
+      )}
     </SpotifyContext.Provider>
   );
 }

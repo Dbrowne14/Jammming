@@ -1,4 +1,4 @@
-import TrackList from "../Fetched_Components/TrackList.js";
+import TrackList from "../../components/Fetched_Components/TrackList.js"
 import { minutesToSeconds } from "../../utils/utilityFns.js";
 import { useSpotify } from "../../context/SpotfyContext.js";
 

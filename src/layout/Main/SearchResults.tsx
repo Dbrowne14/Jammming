@@ -1,7 +1,6 @@
-import TrackList from "../Fetched_Components/TrackList";
+import TrackList from "../../components/Fetched_Components/TrackList";
 import { useSpotify } from "../../context/SpotfyContext";
 import { fetchParams } from "../../data/fetchParameters";
-import { useScrollState } from "../../hooks/useScrollState";
 
 export default function SearchResults() {
   const { searchResults, setSearchLimit } = useSpotify();

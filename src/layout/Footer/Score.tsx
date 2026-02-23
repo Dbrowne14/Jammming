@@ -1,6 +1,9 @@
 import { useSpotify } from "../../context/SpotfyContext";
-import { getScoreColor } from "../../utils/utilityFns";
-import { calculateBaseTopScore, numToZero } from "../../utils/utilityFns";
+import {
+  getScoreColor,
+  calculateBaseTopScore,
+  numToZero,
+} from "../../utils/utilityFns";
 import { ScoringData } from "../../data/scoringParameters";
 
 const Score = () => {
@@ -39,7 +42,9 @@ const Score = () => {
     { name: "Tracks", result: playListScore },
   ];
 
-  const totalScore = Math.floor((accuracyScore + playListScore + themeScore) / scores.length);
+  const totalScore = Math.floor(
+    (accuracyScore + playListScore + themeScore) / scores.length,
+  );
 
   return (
     <div className="inline-flex gap-6 md:border-[0.5px] md:border-[rgba(1,1,1,0.2)] shadow-2xl rounded-2xl md:p-2">
@@ -50,9 +55,7 @@ const Score = () => {
               className="inline-flex  justify-center items-center w-fit h-full  gap-1 "
               key={index}
             >
-              <h2 className=" text-[rgb(144,90,144)]">
-                {score.name}
-              </h2>
+              <h2 className=" text-[rgb(144,90,144)]">{score.name}</h2>
               <h2
                 className={`  ${getScoreColor(score.result)} text-center rounded-2xl bg-[rgba(238,184,239,0.5)] px-2 w-10`}
               >
@@ -63,9 +66,7 @@ const Score = () => {
         })}
       </div>
       <div className="text-[1rem] ">
-        <div
-          className="flex flex-col px-2  md:pr-4 text-[1.3rem]  justify-center items-center w-fit h-full  gap-1 "
-        >
+        <div className="flex flex-col px-2  md:pr-4 text-[1.3rem]  justify-center items-center w-fit h-full  gap-1 ">
           <h2 className=" font-[Audiowide] hidden md:block text-[rgb(144,90,144)]">
             Score
           </h2>

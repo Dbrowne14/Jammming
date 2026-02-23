@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import Spotify from "./utils/Spotify.ts";
-import BottomBar from "./components/Footer/BottomBar.tsx";
-import Header from "./components/Header/Header.tsx";
-import Main from "./components/Main/Main.tsx";
+import BottomBar from "./layout/Footer/BottomBar.tsx";
+import Header from "./layout/Header/Header.tsx";
+import Main from "./layout/Main/Main.tsx";
 
 function App() {
   //get token on render

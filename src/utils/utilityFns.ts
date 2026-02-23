@@ -46,3 +46,11 @@ export const numToZero = (
 
   return typeof finalScore === "function" ? finalScore() : finalScore;
 };
+
+export function showNotification(
+  msg: string,
+  setter: React.Dispatch<React.SetStateAction<string | null>>,
+) {
+  setter(msg);
+  setTimeout(() => setter(null), 3000);
+}

@@ -24,11 +24,11 @@ export default function Track({id, trackName, trackArtist, length, lengthSeconds
         <div>
             <div className="flex flex-row gap-2 items-center justify-center border-b-[rgba(68,56,72,0.8)] border-b-[0.5px] px-1">
                 <div className="flex-1 py-1">
-                    <h3 className="text-[rgb(43,22,54)] font-semibold">{trackName}</h3>
-                    <p className="text-[rgb(43,22,54)]">{trackArtist}</p>
+                    <h3 className="text-[whiteSmoke]  font-semibold">{trackName}</h3>
+                    <p className="text-[whiteSmoke] ">{trackArtist}</p>
                 </div>
                  <div>
-                    <p className="font-bold text-[rgb(42,4,42)] rounded-2xl p-[0.3rem] bg-[rgba(255,253,255,0.1)]">{length}</p>
+                    <p className="font-bold text-[whiteSmoke] rounded-2xl p-[0.3rem] bg-[rgba(255,253,255,0.1)]">{length}</p>
                 </div>
                 <div>
                     {showButton && <button  onClick={handleAdd} className="h-6 w-6 font-bold rounded-2xl">+</button>}
