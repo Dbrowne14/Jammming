@@ -1,13 +1,12 @@
 import { useState, type ChangeEvent } from "react";
 import { useSpotify } from "../../context/SpotfyContext";
 import Spotify from "../../utils/Spotify";
+import { showNotification } from "@/utils/utilityFns";
 
 const SavePlayListBar = () => {
   //handle playlist name
   const [playListName, setPlayListName] = useState("");
-  const [popUp, setPopUp] = useState(false);
-  const [emptyPopUp, setEmptyPopUp] = useState(false);
-  const { playListTracks, setPlayListTracks } = useSpotify();
+  const { playListTracks, setPlayListTracks, setNotification } = useSpotify();
   const savePlayList = Spotify.savePlaylist.bind(Spotify);
   function handleNameChange(e: ChangeEvent<HTMLInputElement>) {
     setPlayListName(e.target.value);
@@ -15,19 +14,33 @@ const SavePlayListBar = () => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    /*if no tracks or entry*/
-    if (!playListTracks) {
-      setEmptyPopUp(true);
-      setTimeout(() => setEmptyPopUp(false), 1000);
+
+    if (!playListName.trim()) {
+      showNotification(
+        "Missing Playlist Name",
+        "Please enter a name for your playlist before saving.",
+        setNotification,
+      );
+      return;
+    }
+
+    if (playListTracks.length !== 10) {
+      showNotification(
+        "Incompatible Track Length",
+        "You must have exactly 10 tracks",
+        setNotification,
+      );
       return;
     }
 
     savePlayList(playListName, playListTracks);
+    showNotification(
+      "Playlist Saved",
+      "Succesfully saved your playlist to Spotify",
+      setNotification,
+    );
     setPlayListName("");
     setPlayListTracks([]);
-    setPopUp(true);
-    setTimeout(() => setPopUp(false), 1000);
-    console.log(playListName);
   }
 
   return (
@@ -51,20 +64,6 @@ const SavePlayListBar = () => {
         <button type="submit" className="h-full">
           Save
         </button>
-        {emptyPopUp && (
-          <div className="overlay">
-            <div className="popUp">
-              <p>Must have exactly 10 tracks</p>
-            </div>
-          </div>
-        )}
-        {popUp && (
-          <div className="overlay">
-            <div className="popUp">
-              <p>Successfully Saved to Spotify</p>
-            </div>
-          </div>
-        )}
       </form>
     </div>
   );

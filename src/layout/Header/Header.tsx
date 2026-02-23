@@ -15,9 +15,9 @@ const Header = () => {
           <br /> <span className="font-bold text-[rgb(10,69,38)]">forty</span>{" "}
           minute playlist
         </h3>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center text-[rgb(181,138,170)]">
           <h2 className="">Weekly Theme:</h2>
-          <h2 className=" bg-[rgba(255,255,255,0.42)] font-bold  border shadow-2xl border-green-600 px-2 rounded-2xl">
+          <h2 className=" bg-[rgba(255,255,255,0.42)] text-black font-bold  border shadow-2xl border-green-600 px-2 rounded-2xl">
             {weeklyTheme} Songs
           </h2>
         </div>
