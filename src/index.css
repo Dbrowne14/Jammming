@@ -29,7 +29,7 @@
   }
 
   button {
-    @apply rounded-2xl border-2 py-0.5 px-2 text-[0.7rem] text-white bg-black cursor-pointer font-Audowide transition-colors duration-200 border-green-600;
+    @apply rounded-2xl border-2 py-0.5 px-0.5 text-[0.7rem] text-white bg-black cursor-pointer font-Audowide transition-colors duration-200 border-green-600;
   }
   button:hover {
     @apply border-[rgba(92,105,247,0.5)] border-2 text-[rgb(198,86,86)];
