@@ -4,7 +4,7 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxList,
-} from "@/components/ui/combobox";
+} from "@/components/ui/subComponents/combobox";
 import { fetchParams } from "../../data/fetchParameters";
 import { useSpotify } from "@/context/SpotfyContext";
 

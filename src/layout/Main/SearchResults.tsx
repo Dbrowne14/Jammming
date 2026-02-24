@@ -1,6 +1,6 @@
 import TrackList from "../../components/FetchedComponents/TrackList";
 import { useSpotify } from "../../context/SpotfyContext";
-import ListComponent from "./listComponent,";
+import ListComponent from "../../components/ui/listComponent";
 
 export default function SearchResults() {
   const { searchResults } = useSpotify();
