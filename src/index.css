@@ -8,6 +8,8 @@
 @theme {
   --font-Poppins: "Poppins" ;
   --font-Audowide: "Audiowide";
+  --color-themePurple: rgb(181,138,170);
+  --color-themeGreen: rgb(10,69,38);
 }
 
 @layer base {
@@ -24,7 +26,7 @@
 
   h1 {
     @apply text-[2.5rem] leading-[1.1];
-  } /* make text variable */
+  }
 
   button {
     @apply rounded-2xl border-2 py-0.5 px-2 text-[0.7rem] text-white bg-black cursor-pointer font-Audowide transition-colors duration-200 border-green-600;
@@ -47,7 +49,7 @@
 
 @layer components {
   .panel {
-    @apply bg-[rgba(13,3,13,0.3)] w-full text-[0.8rem] text-left ;
+    @apply bg-[rgba(13,3,13,0.3)] w-full text-[0.8rem] text-left rounded-t-2xl;
   }
   .header-box {
     @apply sticky top-0 bg-[rgba(13,3,13,1)] h-[2.2rem] border-b-[whitesmoke] border-b sm:rounded-t-xl
@@ -63,6 +65,8 @@
   }
 }
 
+
+/* colors for shadcn */
 :root {
   color-scheme: light dark;
   font-synthesis: none;

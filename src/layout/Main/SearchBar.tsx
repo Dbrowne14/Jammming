@@ -21,7 +21,7 @@ export default function SearchBar() {
         onSubmit={handleSubmit}
         className="inline-flex gap-2 items-center mt-0.5 w-full"
       >
-        <h2 className="font-[Audiowide] text-[rgb(144,90,144)] hidden sm:block">
+        <h2 className="font-[Audiowide] text-themePurple hidden sm:block">
           Search for your song:
         </h2>
         <input

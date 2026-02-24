@@ -7,7 +7,7 @@ export default function SearchResults() {
   return (
     <div>
       <div className="header-box items-center justify-center inline-flex gap-4 w-full">
-        <h2 className="font-[Audiowide] text-[rgb(203,151,203)] text-center">
+        <h2 className="font-[Audiowide] text-themePurple text-center">
           Search Results:
         </h2>
         <ListComponent />

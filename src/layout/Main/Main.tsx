@@ -7,10 +7,10 @@ const Main = () => {
     <main className="flex-1 min-h-0 w-full flex flex-col gap-3 justify-center items-center">
       <SearchBar />
       <div className="w-full flex-1 grid grid-rows-[1fr_1fr] sm:grid-rows-none sm:grid-cols-[1fr_1fr] justify-items-stretch items-stretch gap-1  rounded-t-2xl scrollbar-thin overflow-y-auto">
-        <div className="panel rounded-t-2xl">
+        <div className="panel">
           <SearchResults />
         </div>
-        <div className="panel rounded-t-2xl">
+        <div className="panel">
           <PlayList />
         </div>
       </div>
