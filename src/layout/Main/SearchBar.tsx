@@ -33,7 +33,7 @@ export default function SearchBar() {
           value={input}
           className="px-1"
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="px-2">Search</button>
       </form>
     </div>
   );

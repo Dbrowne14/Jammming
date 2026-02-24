@@ -61,7 +61,7 @@ const SavePlayListBar = () => {
           id="newplaylist"
           className="h-full"
         />
-        <button type="submit" className="h-full">
+        <button type="submit" className="h-full px-2">
           Save
         </button>
       </form>
