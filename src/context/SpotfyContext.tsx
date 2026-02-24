@@ -42,11 +42,16 @@ export function SpotifyProvider({ children }: { children: React.ReactNode }) {
     }
     if (!playListTracks.find((t) => t.id === track.id)) {
       setPlayListTracks([...playListTracks, track]);
+      showNotification("Track Added", "Succesfully added this song to your playlist", setNotification)
+    }
+    if (playListTracks.find((t) => t.id === track.id)) {
+      showNotification("Already Included", "This song is already on your playlist", setNotification)
     }
   }
 
   function removeTrack(track: Track) {
-    setPlayListTracks(playListTracks.filter((t) => t.id !== track.id));
+    setPlayListTracks(playListTracks.filter((t) => t.id !== track.id)); 
+    showNotification("Track Removed", "Succesfully removed this song to your playlist", setNotification) 
   }
 
   async function handleSearch(searchValue: string) {

@@ -10,7 +10,6 @@ export default function Track({id, trackName, trackArtist, length, lengthSeconds
     function handleAdd() {
         if(addTrack) {  
             addTrack({id,trackName,trackArtist, uri, length,lengthSeconds})
-            console.log("I am being clicked")
         }
     }
 
