@@ -10,8 +10,8 @@ const Header = () => {
       <div className="inline-flex gap-2">
         <h3 className="w-fit p-0.5 text-themePurple font-[Audiowide] text-[0.8rem] text-center">
           Create the perfect{" "}
-          <span className="font-bold text-themeGreen">ten</span> song,{" "}
-          <br /> <span className="font-bold text-themeGreen">forty</span>{" "}
+          <span className="font-bold text-green-500">ten</span> song,{" "}
+          <br /> <span className="font-bold text-green-500">forty</span>{" "}
           minute playlist
         </h3>
        

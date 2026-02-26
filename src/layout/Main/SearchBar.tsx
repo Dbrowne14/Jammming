@@ -23,7 +23,7 @@ export default function SearchBar() {
         onSubmit={handleSubmit}
         className="inline-flex gap-2 items-end mt-0.5 w-full"
       >
-        <h2 className="font-[Audiowide] text-themePurple hidden sm:block">
+        <h2 className="font-[Audiowide] text-themePurple hidden sm:block text-[clamp(0.9rem,2.5vw,1.5rem)]">
           Search for your song:
         </h2>
         <input
@@ -36,7 +36,7 @@ export default function SearchBar() {
           className="px-1"
         />
         <button type="submit" className="px-2">Search</button>
-         <div className="flex flex-col justify-center text-themePurple px-0.5">
+         <div className="flex flex-col justify-center text-themePurple px-0.5 text-[clamp(0.9rem,2.5vw,1.5rem)]">
           <h2 className="">Weekly Theme:</h2>
           <h2 className=" bg-[rgba(255,255,255,0.42)] text-black font-bold  border shadow-2xl border-green-600 px-2 rounded-2xl">
             {weeklyTheme} Songs
