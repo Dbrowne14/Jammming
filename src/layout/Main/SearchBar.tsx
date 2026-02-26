@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useSpotify } from "../../context/SpotfyContext";
+import { ScoringData } from "@/data/scoringParameters";
 
 export default function SearchBar() {
+  const {weeklyTheme} = ScoringData
   const { handleSearch } = useSpotify();
   const [input, setInput] = useState("");
 
@@ -34,6 +36,12 @@ export default function SearchBar() {
           className="px-1"
         />
         <button type="submit" className="px-2">Search</button>
+         <div className="flex flex-col justify-center text-themePurple">
+          <h2 className="">Weekly Theme:</h2>
+          <h2 className=" bg-[rgba(255,255,255,0.42)] text-black font-bold  border shadow-2xl border-green-600 px-2 rounded-2xl">
+            {weeklyTheme} Songs
+          </h2>
+        </div>
       </form>
     </div>
   );
