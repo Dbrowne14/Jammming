@@ -1,7 +1,6 @@
-import { ScoringData } from "../../data/scoringParameters";
+
 
 const Header = () => {
-  const { weeklyTheme } = ScoringData;
   return (
     <header className="flex flex-col gap-2 justify-center items-center my-5">
       <div className="inline-flex gap-2 h-14 items-center">
