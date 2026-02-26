@@ -10,6 +10,7 @@
   --font-Audowide: "Audiowide";
   --color-themePurple: rgb(181,138,170);
   --color-themeGreen: rgb(10,69,38);
+  --text-variableSmaller: clamp(0.6rem,2.5vw,0.8rem);
 }
 
 @layer base {
