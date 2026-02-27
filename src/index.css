@@ -6,11 +6,11 @@
 @plugin "tailwind-scrollbar";
 
 @theme {
-  --font-Poppins: "Poppins" ;
+  --font-Poppins: "Poppins";
   --font-Audowide: "Audiowide";
-  --color-themePurple: rgb(181,138,170);
-  --color-themeGreen: rgb(10,69,38);
-  --text-variableSmaller: clamp(0.6rem,2.5vw,0.8rem);
+  --color-themePurple: rgb(181, 138, 170);
+  --color-themeGreen: rgb(10, 69, 38);
+  --text-variableSmaller: clamp(0.6rem, 2.5vw, 0.8rem);
 }
 
 @layer base {
@@ -21,8 +21,7 @@
   }
 
   body {
-    @apply flex flex-col items-center font-Poppins bg-cover bg-no-repeat bg-center text-center ;
-
+    @apply flex flex-col items-center font-Poppins bg-cover bg-no-repeat bg-center text-center;
   }
 
   h1 {
@@ -44,8 +43,8 @@
     @apply bg-[rgba(1,1,1,0.5)] text-white py-0.5 px-1 rounded-2xl flex-1 border border-[#ece0fa] transition-all duration-200 ease-in-out;
   }
   * {
-    @apply border-border outline-ring/50;}
-
+    @apply border-border outline-ring/50;
+  }
 }
 
 @layer components {
@@ -53,7 +52,7 @@
     @apply bg-[rgba(13,3,13,0.3)] w-full text-[0.8rem] text-left rounded-t-2xl;
   }
   .header-box {
-    @apply sticky top-0 bg-[rgba(13,3,13,1)] h-[2.2rem] border-b-[whitesmoke] border-b sm:rounded-t-xl
+    @apply sticky top-0 bg-[rgba(13,3,13,1)] h-[2.2rem] border-b-[whitesmoke] border-b sm:rounded-t-xl;
   }
   .overlay {
     @apply fixed flex items-start justify-start pointer-events-none;
@@ -64,8 +63,18 @@
            shadow-[0_8px_20px_rgba(217,70,239,0.2)] 
            animate-[fade_0.5s_ease];
   }
-}
 
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
 
 /* colors for shadcn */
 :root {
@@ -151,5 +160,4 @@
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-
 }
