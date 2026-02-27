@@ -34,8 +34,15 @@ export default function SearchBar() {
           value={input}
           className="px-1 text-variableSmaller"
         />
-        <button type="submit" className="px-2 text-[clamp(0.4rem,2.5vw,0.6rem)]">Search</button>
-         <DrawerComponent/>
+        <button
+          type="submit"
+          className="px-2 text-[clamp(0.4rem,2.5vw,0.6rem)]"
+        >
+          Search
+        </button>
+        <div className="opacity-0 animate-[slideIn_0.9s_ease-out_forwards]">
+          <DrawerComponent />
+        </div>
       </form>
     </div>
   );
